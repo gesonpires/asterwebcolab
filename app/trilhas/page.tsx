@@ -46,14 +46,54 @@ const trails = [
       'Matéria e Energia Escura',
       'Cosmologia Moderna'
     ]
+  },
+  {
+    id: 4,
+    title: 'Estrelas',
+    description: 'Entenda qual a importância da existênci das estrelas para a composição química do Universo.',
+    image: '/images/trails/stars.jpg',
+    duration: '4 semanas',
+    level: 'Intermediário',
+    modules: [
+      'Tipos de estrelas',
+      'Diagrama HR',
+      'Evolução Estelar'
+    ]
+  },
+  {
+    id: 5,
+    title: 'Interações na natureza',
+    description: 'Aprenda o que é o modelo-padrão e fique por dentro do que é mais atual no entendimento da matéria.',
+    image: '/images/trails/interactions.jpg',
+    duration: '4 semanas',
+    level: 'Avançado',
+    modules: [
+      'Tipos de interações',
+      'Mediadores',
+      'Modelo-padrão de interações'
+    ]
+  },
+  {
+    id: 6,
+    title: 'Nucleossíntese',
+    description: 'Descubra como e onde foram produzidos os elementos químicos.',
+    image: '/images/trails/p-table.jpg',
+    duration: '4 semanas',
+    level: 'Avançado',
+    modules: [
+      'Fusão Nuclear',
+      'Tunelamento quântico',
+      'Cadeia p-p',
+      'Ciclo CNO'
+    ]
   }
 ];
 
 export default function TrailsPage() {
   const [selectedLevel, setSelectedLevel] = useState<string>('all');
 
-  const filteredTrails = selectedLevel === 'all' 
-    ? trails 
+  const filteredTrails = selectedLevel === 'all'
+    ? trails
     : trails.filter(trail => trail.level.toLowerCase() === selectedLevel.toLowerCase());
 
   return (
@@ -67,7 +107,7 @@ export default function TrailsPage() {
         <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">
           Trilhas de Aprendizado
         </h1>
-        
+
         <div className="mb-8">
           <label className="text-gray-700 dark:text-gray-300 mr-4">Filtrar por nível:</label>
           <select
