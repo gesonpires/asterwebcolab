@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
+import Image from 'next/image'
 
 const navigation = [
   { name: 'Início', href: '/' },
@@ -24,8 +25,9 @@ export default function Header() {
             transition={{ duration: 0.5 }}
           >
             <Link href="/" className="flex items-center space-x-2">
-              <img src="/logo.svg" alt="ASTER Logo" className="h-8 w-8" />
-              <span className="text-xl font-bold text-gray-900 dark:text-white">ASTER</span>
+              <Image src="/logo.svg" alt="ASTER Logo" className="h-8 w-8" width={800}
+      height={500}/>
+              <span className="text-xl font-bold text-gray-900 dark:text-white">ASTERWebColab</span>
             </Link>
           </motion.div>
 
@@ -73,4 +75,4 @@ export default function Header() {
       </nav>
     </header>
   );
-} 
+}

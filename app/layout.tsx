@@ -20,14 +20,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="theme-color" content="#000000" />
       </head>
-      <body className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100 min-h-screen flex flex-col">
+      <body>
         <Providers>
-          <Header />
-          <main className="container mx-auto px-4 py-8 flex-grow" role="main">
-            {children}
-          </main>
-          <Footer />
-          <Analytics />
+          <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
+            <Header />
+            <main className="flex-grow container mx-auto px-4 py-8" role="main">
+              {children}
+            </main>
+            <Footer />
+            <Analytics />
+          </div>
         </Providers>
       </body>
     </html>
