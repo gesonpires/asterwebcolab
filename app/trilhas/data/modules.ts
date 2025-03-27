@@ -11,7 +11,7 @@ interface Question {
   question: string;
   options: string[];
   correctAnswer: number;
-}
+} 
 
 interface Quiz {
   questions: Question[];
@@ -109,7 +109,132 @@ export const moduleContents: ModuleContents = {
         }
       ]
     }
+  },
+  2: {
+    'leis-de-kepler': {
+      sections: [
+        {
+          title: 'Introdução às Leis de Kepler',
+          content: [
+            'As Leis de Kepler descrevem o movimento dos planetas ao redor do Sol, estabelecendo que as órbitas são elípticas, com o Sol em um dos focos.',
+            { image: '/images/trails/kepler.jpg', caption: 'Ilustração das órbitas planetárias' }
+          ]
+        },
+        {
+          title: 'Detalhes das Leis',
+          content: [
+            '1ª Lei (Lei das Órbitas): Os planetas se movem em órbitas elípticas com o Sol em um dos focos.',
+            '2ª Lei (Lei das Áreas): Uma linha que liga um planeta ao Sol varre áreas iguais em tempos iguais.',
+            '3ª Lei (Lei dos Períodos): O quadrado do período orbital é proporcional ao cubo do semieixo maior da órbita.'
+          ]
+        }
+      ]
+    },
+    'lei-da-gravitacao-universal': {
+      sections: [
+        {
+          title: 'Conceito da Lei da Gravitação Universal',
+          content: [
+            'A Lei da Gravitação Universal, proposta por Isaac Newton, afirma que cada partícula atrai outra com uma força proporcional ao produto de suas massas e inversamente proporcional ao quadrado da distância entre elas.',
+            { image: '/images/trails/newton.jpg', caption: 'Isaac Newton e a Lei da Gravitação' }
+          ]
+        },
+        {
+          title: 'Aplicações da Lei',
+          content: [
+            'Essa lei explica não apenas o movimento dos planetas, mas também a trajetória de projéteis, a formação das marés e outros fenômenos naturais.'
+          ]
+        }
+      ]
+    },
+    'orbitas-e-trajetorias': {
+      sections: [
+        {
+          title: 'Conceitos de Órbitas',
+          content: [
+            'Órbitas são os caminhos que os corpos celestes seguem ao redor de um centro de gravidade. Esses caminhos podem ser elípticos, circulares ou parabólicos, dependendo das condições iniciais do movimento.',
+            { image: '/images/trails/orbit.jpg', caption: 'Exemplo de órbita planetária' }
+          ]
+        },
+        {
+          title: 'Trajetórias de Satélites e Naves',
+          content: [
+            'O cálculo das trajetórias de satélites e naves espaciais utiliza as leis de Kepler e a Lei da Gravitação Universal, garantindo que eles se mantenham em órbita ou sigam trajetórias planejadas para missões espaciais.'
+          ]
+        }
+      ]
+    }
+  },
+  3: {
+    'relatividade-especial': {
+      sections: [
+        {
+          title: 'Fundamentos da Relatividade Especial',
+          content: [
+            'A Relatividade Especial, formulada por Einstein, revolucionou nossa compreensão do espaço e do tempo, demonstrando que as medições de tempo e distância são relativas ao observador.',
+            { image: '/images/trails/relatividade-especial.jpg', caption: 'Ilustração da dilatação do tempo' }
+          ]
+        },
+        {
+          title: 'Efeitos e Implicações',
+          content: [
+            'Entre os efeitos mais conhecidos estão a dilatação do tempo e a contração do espaço, que se tornam significativos em velocidades próximas à da luz.'
+          ]
+        }
+      ]
+    },
+    'buracos-negros': {
+      sections: [
+        {
+          title: 'O que são Buracos Negros?',
+          content: [
+            'Buracos negros são regiões do espaço onde a gravidade é tão intensa que nada, nem mesmo a luz, consegue escapar. Eles surgem do colapso gravitacional de estrelas massivas.',
+            { image: '/images/trails/buracos-negros.jpg', caption: 'Representação artística de um buraco negro' }
+          ]
+        },
+        {
+          title: 'Detecção e Observações',
+          content: [
+            'Apesar de sua natureza "invisível", os buracos negros podem ser detectados pelos efeitos gravitacionais que exercem sobre a matéria próxima e pela radiação emitida por discos de acreção.'
+          ]
+        }
+      ]
+    },
+    'materia-e-energia-escura': {
+      sections: [
+        {
+          title: 'Introdução à Matéria e Energia Escura',
+          content: [
+            'A matéria escura não emite, absorve ou reflete luz, mas sua presença é inferida a partir dos efeitos gravitacionais. A energia escura está associada à aceleração da expansão do universo.',
+            { image: '/images/trails/materia-energia-escura.jpg', caption: 'Representação da matéria e energia escura no universo' }
+          ]
+        },
+        {
+          title: 'Impactos na Cosmologia',
+          content: [
+            'Juntas, matéria e energia escuras compõem a maior parte do universo e são fundamentais para entender sua estrutura e evolução.'
+          ]
+        }
+      ]
+    },
+    'cosmologia-moderna': {
+      sections: [
+        {
+          title: 'A Evolução do Universo',
+          content: [
+            'A Cosmologia Moderna busca entender a origem, evolução e destino do universo, desde o Big Bang até as teorias atuais que explicam sua expansão e estrutura.'
+          ]
+        },
+        {
+          title: 'Modelos e Teorias',
+          content: [
+            'Modelos como o Big Bang, a inflação cósmica e a teoria do universo em expansão ajudam a explicar as observações astronômicas, como a radiação cósmica de fundo e a distribuição das galáxias.'
+          ]
+        }
+      ]
+    }
   }
+
 };
 
 export const moduleQuizzes: ModuleQuizzes = {
@@ -202,5 +327,163 @@ export const moduleQuizzes: ModuleQuizzes = {
         }
       ]
     }
+  },
+  2: {
+    'leis-de-kepler': {
+      questions: [
+        {
+          question: 'Qual a afirmação correta sobre a primeira lei de Kepler?',
+          options: [
+            'Os planetas se movem em órbitas circulares',
+            'Os planetas se movem em órbitas elípticas com o Sol em um dos focos',
+            'Os planetas se movem em órbitas parabólicas',
+            'Os planetas permanecem estacionários'
+          ],
+          correctAnswer: 1
+        },
+        {
+          question: 'O que a segunda lei de Kepler estabelece?',
+          options: [
+            'Que as áreas varridas em intervalos iguais de tempo são iguais',
+            'Que os planetas se movem em órbitas elípticas',
+            'Que a velocidade dos planetas é constante',
+            'Que os planetas aceleram uniformemente'
+          ],
+          correctAnswer: 0
+        }
+      ]
+    },
+    'lei-da-gravitacao-universal': {
+      questions: [
+        {
+          question: 'Qual a relação estabelecida pela Lei da Gravitação Universal?',
+          options: [
+            'A força de atração é proporcional à soma das massas',
+            'A força de atração é inversamente proporcional ao quadrado da distância entre os corpos',
+            'A força de atração é constante entre quaisquer dois corpos',
+            'A força de atração é proporcional à diferença das massas'
+          ],
+          correctAnswer: 1
+        }
+      ]
+    },
+    'orbitas-e-trajetorias': {
+      questions: [
+        {
+          question: 'Qual dos seguintes não é um tipo de órbita?',
+          options: [
+            'Elíptica',
+            'Circular',
+            'Parabólica',
+            'Retangular'
+          ],
+          correctAnswer: 3
+        },
+        {
+          question: 'O que influencia a trajetória de uma nave espacial?',
+          options: [
+            'Somente a gravitação do corpo celeste',
+            'As leis de Kepler e a gravitação universal',
+            'A resistência do ar',
+            'A cor da nave'
+          ],
+          correctAnswer: 1
+        }
+      ]
+    }
+  },
+  3: {
+    'relatividade-especial': {
+      questions: [
+        {
+          question: 'Quem formulou a Teoria da Relatividade Especial?',
+          options: ['Newton', 'Einstein', 'Galileu', 'Bohr'],
+          correctAnswer: 1
+        },
+        {
+          question: 'Qual fenômeno é consequência da Relatividade Especial?',
+          options: [
+            'Dilatação do tempo',
+            'Contração do espaço',
+            'Ambas as anteriores',
+            'Nenhuma das anteriores'
+          ],
+          correctAnswer: 2
+        }
+      ]
+    },
+    'buracos-negros': {
+      questions: [
+        {
+          question: 'O que caracteriza um buraco negro?',
+          options: [
+            'Emite luz intensa',
+            'É uma estrela supernova',
+            'Possui gravidade tão intensa que nada escapa',
+            'É um buraco no espaço'
+          ],
+          correctAnswer: 2
+        },
+        {
+          question: 'Como os buracos negros podem ser detectados?',
+          options: [
+            'Pela radiação emitida pelo próprio buraco',
+            'Por meio dos efeitos gravitacionais na matéria próxima',
+            'Pela emissão de som',
+            'Pelo brilho intenso ao seu redor'
+          ],
+          correctAnswer: 1
+        }
+      ]
+    },
+    'materia-e-energia-escura': {
+      questions: [
+        {
+          question: 'O que é matéria escura?',
+          options: [
+            'Matéria que interage fortemente com a luz',
+            'Matéria que não emite nem absorve luz',
+            'Matéria visível',
+            'Energia concentrada em forma de matéria'
+          ],
+          correctAnswer: 1
+        },
+        {
+          question: 'Qual o efeito da energia escura no universo?',
+          options: [
+            'Faz o universo contrair',
+            'Acelera a expansão do universo',
+            'Estabiliza a formação de estruturas',
+            'Não tem efeito notável'
+          ],
+          correctAnswer: 1
+        }
+      ]
+    },
+    'cosmologia-moderna': {
+      questions: [
+        {
+          question: 'Qual evento é considerado o início do universo no modelo do Big Bang?',
+          options: [
+            'A formação das estrelas',
+            'A expansão inicial do universo',
+            'A explosão de uma supernova',
+            'A formação dos planetas'
+          ],
+          correctAnswer: 1
+        },
+        {
+          question: 'O que a inflação cósmica explica?',
+          options: [
+            'A formação de buracos negros',
+            'A expansão acelerada do universo logo após o Big Bang',
+            'A rotação das galáxias',
+            'A origem das estrelas'
+          ],
+          correctAnswer: 1
+        }
+      ]
+    }
   }
-}; 
+};
+
