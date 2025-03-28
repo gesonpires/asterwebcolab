@@ -3,6 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { FaRocket, FaBook, FaUsers, FaChalkboardTeacher } from 'react-icons/fa';
 
+
 export default function HomePage() {
   return (
     <div className="min-h-screen">
@@ -19,12 +20,12 @@ export default function HomePage() {
               Descubra, aprenda e compartilhe conhecimento.
             </p>
             <div className="flex flex-wrap gap-4">
-              <Link href="/trilhas" 
+              <Link href="/trilhas"
                 className="px-8 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium flex items-center gap-2">
                 <FaRocket className="w-5 h-5" />
                 Começar Jornada
               </Link>
-              <Link href="/sobre" 
+              <Link href="/sobre"
                 className="px-8 py-3 bg-white/10 text-white rounded-lg hover:bg-white/20 transition-colors font-medium backdrop-blur-sm">
                 Saiba Mais
               </Link>
@@ -120,7 +121,7 @@ export default function HomePage() {
                   </div>
                 </div>
               </div>
-              <Link href="/trilhas" 
+              <Link href="/trilhas"
                 className="inline-block mt-8 px-6 py-3 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-100 transition-colors font-medium">
                 Ver Todos os Tópicos
               </Link>
@@ -146,7 +147,7 @@ export default function HomePage() {
           <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
             Junte-se a nossa comunidade de aprendizado e explore o fascinante mundo da astronomia e física.
           </p>
-          <Link href="/cadastro" 
+          <Link href="/cadastro"
             className="inline-block px-8 py-3 bg-white text-blue-600 rounded-lg hover:bg-gray-100 transition-colors font-medium">
             Criar Conta Gratuita
           </Link>

@@ -14,6 +14,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
+
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
@@ -21,16 +22,16 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <meta name="theme-color" content="#000000" />
       </head>
       <body>
-        <Providers>
-          <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
-            <Header />
-            <main className="flex-grow container mx-auto px-4 py-8" role="main">
-              {children}
-            </main>
-            <Footer />
-            <Analytics />
-          </div>
-        </Providers>
+          <Providers>
+            <div className="min-h-screen flex flex-col bg-white dark:bg-gray-900">
+              <Header />
+              <main className="flex-grow container mx-auto px-4 py-8" role="main">
+                {children}
+              </main>
+              <Footer />
+              <Analytics />
+            </div>
+          </Providers>
       </body>
     </html>
   );

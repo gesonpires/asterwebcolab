@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { moduleContents } from '@/app/trilhas/data/modules';
 
+
 interface ImageContent {
   image: string;
   caption?: string;
@@ -56,7 +57,7 @@ const ModuleContent = ({ trailId, moduleId }: ModuleContentProps) => {
           <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
             {section.title}
           </h2>
-          
+
           {section.content.map((item, itemIndex) => {
             if (typeof item === 'string') {
               return (
@@ -109,4 +110,4 @@ const ModuleContent = ({ trailId, moduleId }: ModuleContentProps) => {
   );
 };
 
-export default ModuleContent; 
+export default ModuleContent;
