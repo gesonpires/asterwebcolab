@@ -9,6 +9,7 @@ const navigation = [
   { name: 'Início', href: '/' },
   { name: 'Trilhas', href: '/trilhas' },
   { name: 'Cadernos', href: '/cadernos' },
+  {name: 'Fundamentos Matemáticos', href: '/fundamentos-matematicos'},
   { name: 'Glossário', href: '/glossario' },
   { name: 'Sobre', href: '/sobre' },
   { name: 'Contato', href: '/contato' },
