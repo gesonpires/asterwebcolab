@@ -43,32 +43,39 @@ const TrailPage = () => {
           <div className="lg:col-span-2">
             <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
               <div className="relative h-64">
-                <Image
-                  src={trail.image}
-                  alt={trail.title}
-                  fill
-                  className="object-cover"
-                />
+                <Image src={trail.image} alt={trail.title} fill className="object-cover" />
               </div>
               <div className="p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
                     {trail.title}
                   </h1>
-                  <span className={`px-3 py-1 rounded-full text-sm font-medium ${
-                    trail.level === 'Iniciante' ? 'bg-green-100 text-green-800' :
-                    trail.level === 'Intermediário' ? 'bg-yellow-100 text-yellow-800' :
-                    'bg-red-100 text-red-800'
-                  }`}>
+                  <span
+                    className={`px-3 py-1 rounded-full text-sm font-medium ${
+                      trail.level === 'Iniciante'
+                        ? 'bg-green-100 text-green-800'
+                        : trail.level === 'Intermediário'
+                        ? 'bg-yellow-100 text-yellow-800'
+                        : 'bg-red-100 text-red-800'
+                    }`}
+                  >
                     {trail.level}
                   </span>
                 </div>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">
-                  {trail.description}
-                </p>
+                <p className="text-gray-600 dark:text-gray-300 mb-6">{trail.description}</p>
                 <div className="flex items-center text-gray-600 dark:text-gray-300 mb-6">
-                  <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                  <svg
+                    className="w-5 h-5 mr-2"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
                   </svg>
                   Duração estimada: {trail.duration}
                 </div>
@@ -102,9 +109,14 @@ const TrailPage = () => {
               </h2>
               <div className="space-y-4">
                 {trail.modules.map((module, index) => {
-                  const moduleId = module.toLowerCase().replace(/\s+/g, '-');
-                  const moduleProgress = trailProgress[moduleId];
-                  
+                  // Se o módulo for string, usamos ele mesmo; se for objeto, usamos module.title
+                  const moduleText = typeof module === 'string' ? module : module.title;
+                  // Se for string, geramos o slug; se for objeto, usamos a propriedade slug
+                  const moduleSlug = typeof module === 'string'
+                      ? module.toLowerCase().replace(/\s+/g, '-')
+                      : module.slug;
+                  const moduleProgress = trailProgress[moduleSlug];
+
                   return (
                     <motion.article
                       key={index}
@@ -118,10 +130,10 @@ const TrailPage = () => {
                       </span>
                       <div className="flex-1">
                         <a
-                          href={`/trilhas/${trailIdNum}/${moduleId}`}
+                          href={`/trilhas/${trailIdNum}/${moduleSlug}`}
                           className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
                         >
-                          {module}
+                          {moduleText}
                         </a>
                         {moduleProgress && (
                           <div className="mt-1">
@@ -150,4 +162,4 @@ const TrailPage = () => {
   );
 };
 
-export default TrailPage; 
+export default TrailPage;

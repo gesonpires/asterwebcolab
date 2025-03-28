@@ -1,3 +1,9 @@
+// Defina o tipo dos módulos:
+export interface ModuleData {
+  title: string;
+  slug: string;
+}
+
 export interface Trail {
   id: number;
   title: string;
@@ -5,23 +11,24 @@ export interface Trail {
   image: string;
   duration: string;
   level: string;
-  modules: string[];
+  modules: ModuleData[];
 }
 
 export const trails: Trail[] = [
   {
     id: 1,
     title: 'Fundamentos de Astronomia',
-    description: 'Aprenda os conceitos básicos da astronomia, desde o sistema solar até as galáxias.',
+    description:
+      'Aprenda os conceitos básicos da astronomia, desde o sistema solar até as galáxias.',
     image: '/images/trails/astronomy-basics.jpg',
     duration: '4 semanas',
     level: 'Iniciante',
     modules: [
-      'Introdução à Astronomia',
-      'Sistema Solar',
-      'Estrelas e Constelações',
-      'Galáxias e Universo'
-    ]
+      { title: 'Introdução à Astronomia', slug: 'introducao-a-astronomia' },
+      { title: 'Sistema Solar', slug: 'sistema-solar' },
+      { title: 'Estrelas e Constelações', slug: 'estrelas-e-constelacoes' },
+      { title: 'Galáxias e Universo', slug: 'galaxias-e-universo' },
+    ],
   },
   {
     id: 2,
@@ -31,10 +38,10 @@ export const trails: Trail[] = [
     duration: '3 semanas',
     level: 'Intermediário',
     modules: [
-      'Leis de Kepler',
-      'Lei da Gravitação Universal',
-      'Órbitas e Trajetórias'
-    ]
+      { title: 'Leis de Kepler', slug: 'leis-de-kepler' },
+      { title: 'Lei da Gravitação Universal', slug: 'lei-da-gravitacao-universal' },
+      { title: 'Órbitas e Trajetórias', slug: 'orbitas-e-trajetorias' },
+    ],
   },
   {
     id: 3,
@@ -44,10 +51,51 @@ export const trails: Trail[] = [
     duration: '6 semanas',
     level: 'Avançado',
     modules: [
-      'Relatividade Especial',
-      'Buracos Negros',
-      'Matéria e Energia Escura',
-      'Cosmologia Moderna'
-    ]
+      { title: 'Relatividade Especial', slug: 'relatividade-especial' },
+      { title: 'Buracos Negros', slug: 'buracos-negros' },
+      { title: 'Matéria e Energia Escura', slug: 'materia-e-energia-escura' },
+      { title: 'Cosmologia Moderna', slug: 'cosmologia-moderna' },
+    ],
+  },
+  {
+    id: 4,
+    title: 'Estrelas',
+    description:
+      'Entenda qual a importância da existênci das estrelas para a composição química do Universo.',
+    image: '/images/trails/stars.jpg',
+    duration: '4 semanas',
+    level: 'Intermediário',
+    modules: [
+      { title: 'Tipos de estrelas', slug: 'tipos-de-estrelas' },
+      { title: 'Diagrama HR', slug: 'diagrama-HR' },
+      { title: 'Evolução Estelar', slug: 'evolucao-estelar' },
+    ],
+  },
+  {
+    id: 5,
+    title: 'Interações na natureza',
+    description: 'Aprenda o que é o modelo-padrão e fique por dentro do que é mais atual no entendimento da matéria.',
+    image: '/images/trails/interactions.jpg',
+    duration: '4 semanas',
+    level: 'Avançado',
+    modules: [
+      { title: 'Tipos de interações', slug: 'tipos-de-interacoes' },
+      { title: 'Mediadores', slug: 'mediadores' },
+      { title: 'Modelo-padrão de interações', slug: 'modelo-padrao-de-interacoes' },
+    ],
+  },
+  {
+    id: 6,
+    title: 'Nucleossíntese',
+    description: 'Descubra como e onde foram produzidos os elementos químicos.',
+    image: '/images/trails/p-table.jpg',
+    duration: '4 semanas',
+    level: 'Avançado',
+    modules: [
+      { title: 'Fusão Nuclear', slug: 'fusao-nuclear' },
+      { title: 'Tunelamento quântico', slug: 'tunelamento-quantico' },
+      { title: 'Cadeia p-p', slug: 'cadeia-pp' },
+      { title: 'Ciclo CNO', slug: 'ciclo-cno' },
+      ]
   }
-]; 
+];

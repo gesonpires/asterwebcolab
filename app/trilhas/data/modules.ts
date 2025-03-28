@@ -11,7 +11,7 @@ interface Question {
   question: string;
   options: string[];
   correctAnswer: number;
-} 
+}
 
 interface Quiz {
   questions: Question[];

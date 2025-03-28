@@ -30,10 +30,9 @@ const ModulePage = () => {
     );
   }
 
-  const moduleIndex = trail.modules.findIndex(
-    m => m.toLowerCase().replace(/\s+/g, '-') === moduleId
-  );
-  
+  const moduleIndex = trail.modules.findIndex(m => (m as any).slug === moduleId);
+
+
   if (moduleIndex === -1) {
     return (
       <div className="min-h-screen flex items-center justify-center">
@@ -49,7 +48,7 @@ const ModulePage = () => {
     );
   }
 
-  const module = trail.modules[moduleIndex];
+  const currentModule = trail.modules[moduleIndex];
   const handleQuizComplete = () => {
     markModuleAsCompleted(trailIdNum, moduleId as string);
   };
@@ -66,7 +65,7 @@ const ModulePage = () => {
           <div className="p-6">
             <div className="flex items-center justify-between mb-6">
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-                {module}
+                {currentModule.title}
               </h1>
               <div className="flex space-x-2">
                 <button
@@ -108,4 +107,4 @@ const ModulePage = () => {
   );
 };
 
-export default ModulePage; 
+export default ModulePage;
