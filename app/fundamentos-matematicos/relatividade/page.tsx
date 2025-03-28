@@ -1,171 +1,141 @@
 'use client';
 
-import { useState } from 'react';
-import { FaChevronRight } from 'react-icons/fa';
-import MathDisplay from '../components/MathDisplay';
-
-// Componente para seções colapsáveis
-const Section = ({ title, children }: { title: string; children: React.ReactNode }) => {
-  const [isOpen, setIsOpen] = useState(true);
-  return (
-    <div className="border-b border-gray-200 dark:border-gray-700">
-      <button
-        className="w-full py-4 px-6 flex items-center justify-between text-left"
-        onClick={() => setIsOpen(!isOpen)}
-      >
-        <h2 className="text-xl font-semibold text-gray-900 dark:text-white">{title}</h2>
-        <FaChevronRight
-          className={`transform transition-transform ${
-            isOpen ? 'rotate-90' : ''
-          } text-gray-500 dark:text-gray-400`}
-        />
-      </button>
-      {isOpen && <div className="px-6 pb-6">{children}</div>}
-    </div>
-  );
-};
+import { MathDisplay, TheoremBox, DefinitionBox, ExampleBox, NoteBox } from '../components';
 
 export default function RelatividadePage() {
   return (
-    <div className="min-h-screen py-12">
-      <div className="container mx-auto px-4">
-        {/* Cabeçalho */}
-        <div className="mb-12">
-          <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-6">
-            Fundamentos Matemáticos da Relatividade
-          </h1>
-          <p className="text-xl text-gray-600 dark:text-gray-300">
-            Desenvolvimento matemático rigoroso da teoria da relatividade especial e geral,
-            incluindo o formalismo tensorial e geometria diferencial.
-          </p>
-        </div>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-3xl font-bold mb-6">Relatividade</h1>
+      
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Transformações de Lorentz</h2>
+        <p className="mb-4">
+          As transformações de Lorentz são as equações fundamentais que descrevem como as coordenadas 
+          espaço-temporais se transformam entre diferentes referenciais inerciais em movimento relativo.
+        </p>
+        
+        <TheoremBox title="Transformações de Lorentz">
+          Para um referencial S' movendo-se com velocidade v em relação a S ao longo do eixo x:
+        </TheoremBox>
+        
+        <MathDisplay 
+          formula="x' = \gamma(x - vt)"
+          label="Transformação da coordenada x"
+        />
+        <MathDisplay 
+          formula="t' = \gamma(t - \frac{vx}{c^2})"
+          label="Transformação da coordenada t"
+        />
+        <MathDisplay 
+          formula="y' = y"
+          label="Transformação da coordenada y"
+        />
+        <MathDisplay 
+          formula="z' = z"
+          label="Transformação da coordenada z"
+        />
+        
+        <NoteBox type="info">
+          Onde γ (fator de Lorentz) é dado por:
+        </NoteBox>
+        
+        <MathDisplay 
+          formula="\gamma = \frac{1}{\sqrt{1 - \frac{v^2}{c^2}}}"
+          label="Fator de Lorentz"
+        />
+      </section>
 
-        {/* Conteúdo Principal */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-lg overflow-hidden">
-          {/* Relatividade Especial */}
-          <Section title="1. Relatividade Especial">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
-                  1.1 Transformações de Lorentz
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  As transformações de Lorentz descrevem como as coordenadas espaciais e temporais
-                  de um evento se transformam entre referenciais inerciais.
-                </p>
-                <MathDisplay 
-                  formula="t' = \\gamma(t - \\frac{vx}{c^2})" 
-                  label="Transformação temporal"
-                />
-                <MathDisplay 
-                  formula="x' = \\gamma(x - vt)" 
-                  label="Transformação espacial x"
-                />
-                <MathDisplay 
-                  formula="y' = y" 
-                  label="Transformação espacial y"
-                />
-                <MathDisplay 
-                  formula="z' = z" 
-                  label="Transformação espacial z"
-                />
-                <p className="text-gray-600 dark:text-gray-400 mt-4">
-                  onde <MathDisplay 
-                    formula="\\gamma = \\frac{1}{\\sqrt{1-v^2/c^2}}" 
-                    display={false}
-                    label="Fator de Lorentz"
-                  /> é o fator de Lorentz.
-                </p>
-              </div>
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Métrica de Minkowski</h2>
+        <p className="mb-4">
+          A métrica de Minkowski é a estrutura matemática que define a geometria do espaço-tempo 
+          na relatividade especial.
+        </p>
+        
+        <DefinitionBox term="Métrica de Minkowski">
+          A métrica de Minkowski é definida pelo tensor métrico ημν:
+        </DefinitionBox>
+        
+        <MathDisplay 
+          formula="\eta_{\mu\nu} = (-1,1,1,1)"
+          label="Tensor Métrico de Minkowski"
+        />
+        
+        <NoteBox type="tip">
+          O elemento de linha é dado por:
+        </NoteBox>
+        
+        <MathDisplay 
+          formula="ds^2 = -c^2dt^2 + dx^2 + dy^2 + dz^2"
+          label="Elemento de linha"
+        />
+      </section>
 
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
-                  1.2 Métrica de Minkowski
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  O intervalo espaço-temporal invariante é dado pela métrica de Minkowski:
-                </p>
-                <MathDisplay 
-                  formula="ds^2 = -c^2dt^2 + dx^2 + dy^2 + dz^2"
-                  label="Métrica de Minkowski"
-                />
-              </div>
-            </div>
-          </Section>
-
-          {/* Relatividade Geral */}
-          <Section title="2. Relatividade Geral">
-            <div className="space-y-6">
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
-                  2.1 Tensor Métrico
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  O tensor métrico <MathDisplay 
-                    formula="g_{\\mu\\nu}" 
-                    display={false}
-                    label="Tensor métrico"
-                  /> descreve a geometria do espaço-tempo:
-                </p>
-                <MathDisplay 
-                  formula="ds^2 = g_{\\mu\\nu}dx^\\mu dx^\\nu"
-                  label="Intervalo espaço-temporal geral"
-                />
-              </div>
-
-              <div>
-                <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-200 mb-3">
-                  2.2 Equações de Einstein
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400 mb-4">
-                  As equações de campo de Einstein relacionam a geometria do espaço-tempo com a
-                  distribuição de matéria e energia:
-                </p>
-                <MathDisplay 
-                  formula="R_{\\mu\\nu} - \\frac{1}{2}Rg_{\\mu\\nu} + \\Lambda g_{\\mu\\nu} = \\frac{8\\pi G}{c^4}T_{\\mu\\nu}"
-                  label="Equações de campo de Einstein"
-                />
-              </div>
-            </div>
-          </Section>
-
-          {/* Exercícios */}
-          <Section title="3. Exercícios Propostos">
-            <div className="space-y-4">
-              <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <p className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
-                  Exercício 1:
-                </p>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Derive as transformações de Lorentz a partir dos postulados da relatividade
-                  especial e da invariância da velocidade da luz.
-                </p>
-              </div>
-
-              <div className="p-4 bg-gray-50 dark:bg-gray-700 rounded-lg">
-                <p className="font-semibold text-gray-800 dark:text-gray-200 mb-2">
-                  Exercício 2:
-                </p>
-                <p className="text-gray-600 dark:text-gray-400">
-                  Calcule o tensor de Riemann para a métrica de Schwarzschild.
-                </p>
-              </div>
-            </div>
-          </Section>
-        </div>
-
-        {/* Referências */}
-        <div className="mt-12 bg-gray-50 dark:bg-gray-900 rounded-xl p-6">
-          <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Referências
-          </h2>
-          <ul className="list-disc list-inside text-gray-600 dark:text-gray-400">
-            <li>Weinberg, S. - Gravitation and Cosmology</li>
-            <li>Misner, Thorne & Wheeler - Gravitation</li>
-            <li>Wald, R. M. - General Relativity</li>
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Equações de Einstein</h2>
+        <p className="mb-4">
+          As equações de campo de Einstein são as equações fundamentais da relatividade geral, 
+          descrevendo como a matéria curva o espaço-tempo.
+        </p>
+        
+        <TheoremBox title="Equações de Campo de Einstein">
+          As equações de campo de Einstein relacionam a curvatura do espaço-tempo com a distribuição 
+          de matéria e energia:
+        </TheoremBox>
+        
+        <MathDisplay 
+          formula="R_{\mu\nu} - \frac{1}{2}Rg_{\mu\nu} + \Lambda g_{\mu\nu} = \frac{8\pi G}{c^4}T_{\mu\nu}"
+          label="Equações de Einstein"
+        />
+        
+        <NoteBox type="warning">
+          Onde:
+          <ul className="space-y-2 ml-6 mt-2">
+            <li className="flex items-center gap-2">
+              <MathDisplay formula="R_{\mu\nu}" display={false} />
+              <span>é o tensor de Ricci</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <span className="font-medium">R</span>
+              <span>é a curvatura escalar</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <MathDisplay formula="g_{\mu\nu}" display={false} />
+              <span>é o tensor métrico</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <MathDisplay formula="\Lambda" display={false} />
+              <span>é a constante cosmológica</span>
+            </li>
+            <li className="flex items-center gap-2">
+              <MathDisplay formula="T_{\mu\nu}" display={false} />
+              <span>é o tensor de energia-momento</span>
+            </li>
           </ul>
-        </div>
-      </div>
+        </NoteBox>
+      </section>
+
+      <section className="mb-8">
+        <h2 className="text-2xl font-semibold mb-4">Exemplos</h2>
+        
+        <ExampleBox title="Dilatação do Tempo">
+          Um relógio em movimento marca o tempo mais lentamente que um relógio em repouso.
+        </ExampleBox>
+        
+        <MathDisplay 
+          formula="\Delta t' = \gamma\Delta t"
+          label="Fórmula da dilatação do tempo"
+        />
+        
+        <ExampleBox title="Contração do Comprimento">
+          Um objeto em movimento tem seu comprimento medido menor que quando em repouso.
+        </ExampleBox>
+        
+        <MathDisplay 
+          formula="L' = \frac{L}{\gamma}"
+          label="Fórmula da contração do comprimento"
+        />
+      </section>
     </div>
   );
 }
