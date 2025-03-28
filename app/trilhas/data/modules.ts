@@ -155,15 +155,39 @@ export const moduleContents: ModuleContents = {
     'galaxias-e-universo': {
       sections: [
         {
-          title: 'Título 1',
-          content: ['Conteúdo do título 1', { image: '/images/trails/solar-system-objects.jpg', caption: 'xxxx' }],
+          title: 'Panorama das Galáxias e do Universo',
+          content: [
+            'O universo é composto por bilhões de galáxias, cada uma contendo bilhões de estrelas. Neste módulo, vamos explorar a diversidade de galáxias e entender como elas se organizam em larga escala.',
+            { image: '/images/trails/galaxy-overview.jpg', caption: 'Uma galáxia espiral vista de longe' },
+            'As galáxias são classificadas principalmente em espirais, elípticas e irregulares, e essa classificação nos dá pistas sobre sua formação e evolução ao longo do tempo.',
+            '<strong>Subtítulo: Classificação das Galáxias</strong>',
+            '• <em>Galáxias Espirais:</em> Possuem braços bem definidos que se estendem a partir de um núcleo central brilhante.',
+            '• <em>Galáxias Elípticas:</em> Apresentam formas mais uniformes, com pouco ou nenhum traço de estrutura em espiral.',
+            '• <em>Galáxias Irregulares:</em> Não possuem uma forma definida, geralmente resultado de interações ou colisões com outras galáxias.',
+          ],
         },
         {
-          title: 'Título 2',
-          content: ['Conteúdo do título 2', { image: '/images/trails/solar-system-objects.jpg', caption: 'xxxx' }],
-        }
+          title: 'Estrutura Cósmica e a Teia do Universo',
+          content: [
+            'Além de estudar as galáxias individualmente, os astrônomos observam a disposição delas em larga escala. O universo forma uma teia cósmica composta por filamentos, aglomerados e vazios, que delineiam a estrutura de todo o cosmos.',
+            '<div class="box-ilustrativo" style="padding: 1rem; border: 1px solid #ccc; background: #f9f9f9;">Dica: Imagine a teia cósmica como uma rede onde cada nó é um aglomerado de galáxias, interligados por filamentos de matéria escura.</div>',
+            { image: '/images/trails/cosmic-web.jpg', caption: 'Representação artística da teia cósmica formada por filamentos de galáxias' },
+            'Essa estrutura revela a história da formação do universo e os processos de interação gravitacional entre os seus componentes.',
+          ],
+        },
+        {
+          title: 'Modelos Cosmológicos e a Expansão do Universo',
+          content: [
+            'O estudo das galáxias fornece evidências fundamentais para o modelo do Big Bang. A observação de que as galáxias se afastam umas das outras com velocidades proporcionais às suas distâncias sustenta a teoria de um universo em expansão.',
+            { image: '/images/trails/expanding-universe.jpg', caption: 'Ilustração da expansão do universo' },
+            'Pesquisas indicam que a expansão do universo está acelerando, um fenômeno atribuído à energia escura, que compõe a maior parte do cosmos e ainda é um dos grandes mistérios da física moderna.',
+            '<strong>Box Informativo:</strong> <em>A energia escura representa aproximadamente 68% do universo, sendo responsável pela aceleração na expansão cósmica.</em>',
+          ],
+        },
       ],
     },
+
+
   },
   2: {
     'leis-de-kepler': {
@@ -400,6 +424,40 @@ export const moduleQuizzes: ModuleQuizzes = {
         }
       ],
     },
+    'galaxias-e-universo':{
+      questions: [
+        {
+          question: 'Qual é a principal característica das galáxias espirais?',
+          options: [
+            'Elas possuem formas totalmente irregulares sem estrutura definida',
+            'Elas apresentam braços espirais que se estendem a partir de um núcleo central',
+            'São formadas exclusivamente por matéria escura',
+            'Elas não apresentam nenhum movimento rotacional'
+          ],
+          correctAnswer: 1,
+        },
+        {
+          question: 'O que representa a teia cósmica no universo?',
+          options: [
+            'Um agrupamento isolado de estrelas',
+            'Uma rede de filamentos e aglomerados que conectam as galáxias em larga escala',
+            'A formação de buracos negros em massa',
+            'A estrutura interna de uma galáxia'
+          ],
+          correctAnswer: 1,
+        },
+        {
+          question: 'Qual evidência sustenta o modelo do Big Bang?',
+          options: [
+            'A observação de que as galáxias estão se afastando umas das outras',
+            'A existência de apenas uma galáxia dominante no universo',
+            'A estabilidade e imutabilidade do universo',
+            'A formação contínua de novas galáxias sem qualquer expansão'
+          ],
+          correctAnswer: 0,
+        },
+      ],
+    }
   },
   2: {
     'leis-de-kepler': {
