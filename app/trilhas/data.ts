@@ -74,14 +74,17 @@ export const trails: Trail[] = [
   {
     id: 5,
     title: 'Interações na natureza',
-    description: 'Aprenda o que é o modelo-padrão e fique por dentro do que é mais atual no entendimento da matéria.',
+    description:
+      'Explore as forças fundamentais que governam o universo, desde a gravidade até as interações nucleares.',
     image: '/images/trails/interactions.jpg',
     duration: '4 semanas',
-    level: 'Avançado',
+    level: 'Intermediário',
     modules: [
-      { title: 'Tipos de interações', slug: 'tipos-de-interacoes' },
-      { title: 'Mediadores', slug: 'mediadores' },
-      { title: 'Modelo-padrão de interações', slug: 'modelo-padrao-de-interacoes' },
+      { title: 'Introdução às Interações', slug: 'introducao-as-interacoes' },
+      { title: 'Força Gravitacional', slug: 'forca-gravitacional' },
+      { title: 'Força Eletromagnética', slug: 'forca-eletromagnetica' },
+      { title: 'Forças Nucleares', slug: 'forcas-nucleares' },
+      { title: 'Interações na Vida Cotidiana', slug: 'interacoes-na-vida-cotidiana' },
     ],
   },
   {
@@ -96,6 +99,6 @@ export const trails: Trail[] = [
       { title: 'Tunelamento quântico', slug: 'tunelamento-quantico' },
       { title: 'Cadeia p-p', slug: 'cadeia-pp' },
       { title: 'Ciclo CNO', slug: 'ciclo-cno' },
-      ]
-  }
+    ],
+  },
 ];

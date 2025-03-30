@@ -475,6 +475,131 @@ export const moduleContents: ModuleContents = {
       ],
     },
   },
+  5: {
+    'introducao-as-interacoes': {
+      sections: [
+        {
+          title: 'O que são as interações fundamentais?',
+          content: [
+            'As interações fundamentais são as forças básicas que governam o universo. Existem quatro forças fundamentais: gravitacional, eletromagnética, nuclear forte e nuclear fraca.',
+            'Cada uma dessas forças tem características únicas e atua em diferentes escalas e distâncias.',
+          ],
+        },
+      ],
+    },
+    'forca-gravitacional': {
+      sections: [
+        {
+          title: 'A Força Gravitacional',
+          content: [
+            'A gravidade é a força mais fraca entre as fundamentais, mas é a que atua em maior escala.',
+            'Ela é sempre uma força de atração e tem alcance infinito.',
+          ],
+        },
+      ],
+    },
+    'forca-eletromagnetica': {
+      sections: [
+        {
+          title: 'A Força Eletromagnética',
+          content: [
+            'A força eletromagnética é responsável por todos os fenômenos elétricos e magnéticos.',
+            'Ela é fundamental para a tecnologia moderna e a vida como conhecemos.',
+          ],
+        },
+      ],
+    },
+    'forcas-nucleares': {
+      sections: [
+        {
+          title: 'As Forças Nucleares',
+          content: [
+            'A força nuclear forte é a mais forte das forças fundamentais.',
+            'A força nuclear fraca é responsável pelo decaimento radioativo.',
+          ],
+        },
+      ],
+    },
+    'interacoes-na-vida-cotidiana': {
+      sections: [
+        {
+          title: 'Interações no Dia a Dia',
+          content: [
+            'As interações fundamentais manifestam-se de diversas formas em nossa vida cotidiana.',
+            'Elas são essenciais para a tecnologia e o funcionamento do universo.',
+          ],
+        },
+      ],
+    },
+  },
+  6: {
+    'introducao-a-nucleossintese': {
+      sections: [
+        {
+          title: 'O que é Nucleossíntese?',
+          content: [
+            'A nucleossíntese é o processo de criação de novos núcleos atômicos a partir de nucleons pré-existentes.',
+            'Este processo é responsável pela formação de todos os elementos químicos que conhecemos no universo.',
+          ],
+        },
+      ],
+    },
+    'nucleossintese-primordial': {
+      sections: [
+        {
+          title: 'Nucleossíntese Primordial',
+          content: [
+            'A nucleossíntese primordial ocorreu nos primeiros minutos após o Big Bang.',
+            'Ela produziu principalmente hidrogênio e hélio, com pequenas quantidades de deutério e lítio.',
+          ],
+        },
+      ],
+    },
+    'nucleossintese-estelar': {
+      sections: [
+        {
+          title: 'Nucleossíntese Estelar',
+          content: [
+            'A nucleossíntese estelar é o processo pelo qual as estrelas produzem elementos mais pesados.',
+            'O processo triplo-alfa é crucial para a produção de carbono.',
+          ],
+        },
+      ],
+    },
+    'nucleossintese-explosiva': {
+      sections: [
+        {
+          title: 'Nucleossíntese Explosiva',
+          content: [
+            'A nucleossíntese explosiva ocorre em supernovas e colisões de estrelas de nêutrons.',
+            'Ela é responsável pela produção de elementos mais pesados que o ferro.',
+          ],
+        },
+      ],
+    },
+    'fusao-nuclear': {
+      sections: [
+        {
+          title: 'Fusão Nuclear',
+          content: [
+            'A fusão nuclear requer temperaturas extremamente altas.',
+            'É o processo que alimenta as estrelas e pode ser uma fonte de energia limpa no futuro.',
+          ],
+        },
+      ],
+    },
+    'aplicacoes-e-implicacoes': {
+      sections: [
+        {
+          title: 'Aplicações e Implicações',
+          content: [
+            'O estudo da nucleossíntese tem aplicações em diversas áreas da ciência.',
+            'Ele é fundamental para entender a evolução do universo e desenvolver novas tecnologias.',
+          ],
+        },
+      ],
+    },
+  },
 };
 
 export const moduleQuizzes: ModuleQuizzes = {
@@ -903,6 +1028,253 @@ export const moduleQuizzes: ModuleQuizzes = {
             'Supernovas e buracos negros',
             'Estrelas da sequência principal',
           ],
+          correctAnswer: 2,
+        },
+      ],
+    },
+  },
+  5: {
+    'introducao-as-interacoes': {
+      questions: [
+        {
+          question: 'Quantas são as forças fundamentais da natureza?',
+          options: ['2', '3', '4', '5'],
+          correctAnswer: 2,
+        },
+        {
+          question: 'Qual é a força mais fraca entre as fundamentais?',
+          options: [
+            'Força Eletromagnética',
+            'Força Gravitacional',
+            'Força Nuclear Forte',
+            'Força Nuclear Fraca',
+          ],
+          correctAnswer: 1,
+        },
+      ],
+    },
+    'forca-gravitacional': {
+      questions: [
+        {
+          question: 'A gravidade é sempre uma força de:',
+          options: ['Atração', 'Repulsão', 'Atração e repulsão', 'Nenhuma das alternativas'],
+          correctAnswer: 0,
+        },
+        {
+          question: 'Qual é o alcance da força gravitacional?',
+          options: ['Limitado', 'Infinito', 'Médio', 'Curto'],
+          correctAnswer: 1,
+        },
+      ],
+    },
+    'forca-eletromagnetica': {
+      questions: [
+        {
+          question:
+            'Qual é a principal manifestação da força eletromagnética na tecnologia moderna?',
+          options: ['Gravidade', 'Eletricidade', 'Força Nuclear', 'Nenhuma das alternativas'],
+          correctAnswer: 1,
+        },
+        {
+          question: 'A força eletromagnética é responsável por:',
+          options: [
+            'Apenas a eletricidade',
+            'Apenas o magnetismo',
+            'Eletricidade e magnetismo',
+            'Nenhuma das alternativas',
+          ],
+          correctAnswer: 2,
+        },
+      ],
+    },
+    'forcas-nucleares': {
+      questions: [
+        {
+          question: 'Qual é a mais forte das forças fundamentais?',
+          options: [
+            'Força Gravitacional',
+            'Força Eletromagnética',
+            'Força Nuclear Forte',
+            'Força Nuclear Fraca',
+          ],
+          correctAnswer: 2,
+        },
+        {
+          question: 'A força nuclear fraca é responsável por:',
+          options: [
+            'Manter os átomos unidos',
+            'Decaimento radioativo',
+            'Gravidade',
+            'Eletricidade',
+          ],
+          correctAnswer: 1,
+        },
+      ],
+    },
+    'interacoes-na-vida-cotidiana': {
+      questions: [
+        {
+          question: 'As interações na natureza se limitam apenas às forças fundamentais?',
+          options: ['Sim', 'Não', 'Às vezes', 'Depende'],
+          correctAnswer: 1,
+        },
+        {
+          question: 'Qual é uma aplicação tecnológica das interações na natureza?',
+          options: [
+            'Gravidade artificial',
+            'Energia renovável',
+            'Força nuclear',
+            'Nenhuma das alternativas',
+          ],
+          correctAnswer: 1,
+        },
+      ],
+    },
+  },
+  6: {
+    'introducao-a-nucleossintese': {
+      questions: [
+        {
+          question: 'O que é nucleossíntese?',
+          options: [
+            'Processo de criação de novos núcleos atômicos',
+            'Processo de destruição de núcleos atômicos',
+            'Processo de transformação de energia',
+            'Processo de formação de moléculas',
+          ],
+          correctAnswer: 0,
+        },
+        {
+          question: 'Qual dos seguintes NÃO é um tipo de nucleossíntese?',
+          options: [
+            'Nucleossíntese Primordial',
+            'Nucleossíntese Estelar',
+            'Nucleossíntese Molecular',
+            'Nucleossíntese Explosiva',
+          ],
+          correctAnswer: 2,
+        },
+        {
+          question: 'Quem foram os autores do trabalho B²FH?',
+          options: [
+            'Bohr, Becquerel, Fermi e Heisenberg',
+            'Burbidge, Burbidge, Fowler e Hoyle',
+            'Bethe, Born, Feynman e Higgs',
+            'Boyle, Boltzmann, Faraday e Hubble',
+          ],
+          correctAnswer: 1,
+        },
+      ],
+    },
+    'nucleossintese-primordial': {
+      questions: [
+        {
+          question: 'Quando ocorreu a nucleossíntese primordial?',
+          options: [
+            'Milhões de anos após o Big Bang',
+            'Nos primeiros minutos após o Big Bang',
+            'Durante a formação das primeiras estrelas',
+            'Na formação das primeiras galáxias',
+          ],
+          correctAnswer: 1,
+        },
+        {
+          question:
+            'Qual é a abundância aproximada de hélio produzido na nucleossíntese primordial?',
+          options: ['10% em massa', '25% em massa', '50% em massa', '75% em massa'],
+          correctAnswer: 1,
+        },
+        {
+          question:
+            'Qual elemento NÃO foi produzido em quantidades significativas durante a nucleossíntese primordial?',
+          options: ['Hidrogênio', 'Hélio', 'Deutério', 'Carbono'],
+          correctAnswer: 3,
+        },
+      ],
+    },
+    'nucleossintese-estelar': {
+      questions: [
+        {
+          question: 'Qual é o principal processo de fusão nuclear no Sol?',
+          options: [
+            'Ciclo CNO',
+            'Cadeia próton-próton',
+            'Processo triplo-alfa',
+            'Fusão de carbono',
+          ],
+          correctAnswer: 1,
+        },
+        {
+          question: 'O que é o processo triplo-alfa?',
+          options: [
+            'Fusão de três prótons',
+            'Fusão de três nêutrons',
+            'Fusão de três núcleos de hélio',
+            'Fusão de três elétrons',
+          ],
+          correctAnswer: 2,
+        },
+        {
+          question:
+            'Qual é o elemento mais pesado que pode ser produzido por fusão nuclear em estrelas?',
+          options: ['Carbono', 'Oxigênio', 'Ferro', 'Urânio'],
+          correctAnswer: 2,
+        },
+      ],
+    },
+    'nucleossintese-explosiva': {
+      questions: [
+        {
+          question: 'Onde ocorre a nucleossíntese explosiva?',
+          options: [
+            'No núcleo das estrelas normais',
+            'Em supernovas e colisões de estrelas de nêutrons',
+            'Na atmosfera terrestre',
+            'Em nebulosas planetárias',
+          ],
+          correctAnswer: 1,
+        },
+        {
+          question: 'O que é o processo-r?',
+          options: [
+            'Captura rápida de prótons',
+            'Captura rápida de nêutrons',
+            'Captura lenta de elétrons',
+            'Captura lenta de nêutrons',
+          ],
+          correctAnswer: 1,
+        },
+        {
+          question: 'Quais elementos são principalmente produzidos na nucleossíntese explosiva?',
+          options: [
+            'Hidrogênio e hélio',
+            'Carbono e oxigênio',
+            'Elementos mais pesados que o ferro',
+            'Apenas gases nobres',
+          ],
+          correctAnswer: 2,
+        },
+      ],
+    },
+    'fusao-nuclear': {
+      questions: [
+        {
+          question: 'Qual é a principal condição necessária para a fusão nuclear?',
+          options: [
+            'Baixas temperaturas',
+            'Temperaturas extremamente altas',
+            'Ausência de pressão',
+            'Baixa densidade',
+          ],
+          correctAnswer: 1,
+        },
+      ],
+    },
+    'aplicacoes-e-implicacoes': {
+      questions: [
+        {
+          question: 'Qual área NÃO é diretamente impactada pelo estudo da nucleossíntese?',
+          options: ['Astrofísica', 'Física Nuclear', 'Botânica', 'Cosmologia'],
           correctAnswer: 2,
         },
       ],

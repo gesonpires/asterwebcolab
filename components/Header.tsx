@@ -3,13 +3,14 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import ThemeToggle from './ThemeToggle';
-import Image from 'next/image'
+import Image from 'next/image';
 
 const navigation = [
   { name: 'Início', href: '/' },
   { name: 'Trilhas', href: '/trilhas' },
+  { name: 'Roadmap', href: '/roadmap' },
   { name: 'Cadernos', href: '/cadernos' },
-  {name: 'Fundamentos Matemáticos', href: '/fundamentos-matematicos'},
+  { name: 'Fundamentos Matemáticos', href: '/fundamentos-matematicos' },
   { name: 'Glossário', href: '/glossario' },
   { name: 'Sobre', href: '/sobre' },
   { name: 'Contato', href: '/contato' },
@@ -26,19 +27,20 @@ export default function Header() {
             transition={{ duration: 0.5 }}
           >
             <Link href="/" className="flex items-center space-x-2">
-              <Image src="/logo.svg" alt="ASTER Logo" className="h-8 w-8" width={800}
-      height={500}/>
+              <Image
+                src="/logo.svg"
+                alt="ASTER Logo"
+                className="h-8 w-8"
+                width={800}
+                height={500}
+              />
               <span className="text-xl font-bold text-gray-900 dark:text-white">ASTERWebColab</span>
             </Link>
           </motion.div>
 
           <div className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <motion.div
-                key={item.name}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
+            {navigation.map(item => (
+              <motion.div key={item.name} whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
                 <Link
                   href={item.href}
                   className="text-gray-600 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
