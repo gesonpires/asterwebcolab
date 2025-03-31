@@ -19,7 +19,7 @@
       }
     ],
     "paths": {
-      "@/*": ["./*"]
+      "@/*": ["./app/*"]
     },
     "types": ["jest", "@testing-library/jest-dom"]
   },

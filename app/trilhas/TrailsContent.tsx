@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { useState } from 'react';
-import TrailCard from '@/components/trails/TrailCard';
+import TrailCard from '../components/trails/TrailCard';
 
 const trails = [
   {
