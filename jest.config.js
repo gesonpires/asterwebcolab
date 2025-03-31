@@ -1,4 +1,4 @@
-const nextJest = require('next/jest');
+import nextJest from 'next/jest';
 
 const createJestConfig = nextJest({
   dir: './',
@@ -7,11 +7,7 @@ const createJestConfig = nextJest({
 const customJestConfig = {
   setupFilesAfterEnv: ['<rootDir>/jest.setup.js'],
   moduleNameMapper: {
-    '^@/(.*)$': '<rootDir>/app/$1',
-    '^@/app/(.*)$': '<rootDir>/app/$1',
-    '^@/components/(.*)$': '<rootDir>/app/components/$1',
-    '^@/services/(.*)$': '<rootDir>/app/services/$1',
-    '^@/models/(.*)$': '<rootDir>/app/models/$1',
+    '^@/(.*)$': '<rootDir>/$1',
   },
   testEnvironment: 'jest-environment-jsdom',
   collectCoverage: true,
@@ -30,4 +26,4 @@ const customJestConfig = {
   roots: ['<rootDir>/app'],
 };
 
-module.exports = createJestConfig(customJestConfig);
+export default createJestConfig(customJestConfig);

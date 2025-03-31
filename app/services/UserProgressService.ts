@@ -1,12 +1,46 @@
 import {
   UserProgress,
   Activity,
+  ActivityType,
+  Achievement,
   ModuleProgress,
   TrailProgress,
-  Achievement,
-  ActivityType,
   UserGoal,
 } from '../models/UserProgress';
+
+// Interfaces que serão usadas em futuras implementações
+/* eslint-disable @typescript-eslint/no-unused-vars */
+interface ModuleProgress {
+  moduleId: string;
+  completed: boolean;
+  score: number;
+  timeSpent: number;
+}
+
+interface TrailProgress {
+  trailId: string;
+  completed: boolean;
+  modulesCompleted: number;
+  totalModules: number;
+  timeSpent: number;
+}
+
+interface UserGoal {
+  type: 'module' | 'trail' | 'time';
+  target: string;
+  deadline?: Date;
+  completed: boolean;
+}
+
+interface Achievement {
+  id: string;
+  title: string;
+  description: string;
+  icon: string;
+  earned: boolean;
+  earnedAt?: Date;
+}
+/* eslint-enable @typescript-eslint/no-unused-vars */
 
 export class UserProgressService {
   private static instance: UserProgressService;

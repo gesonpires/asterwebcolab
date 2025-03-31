@@ -5,16 +5,12 @@ import { ReactNode } from 'react';
 import { Providers } from './providers';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
+import { defaultMetadata } from './config/metadata';
 import type { Metadata } from 'next';
 
-export const metadata: Metadata = {
-  title: 'ASTERWebColab',
-  description: 'Plataforma educacional para o ensino de Astronomia',
-  metadataBase: new URL('https://asterwebcolab.vercel.app'),
-};
+export const metadata: Metadata = defaultMetadata;
 
 export default function RootLayout({ children }: { children: ReactNode }) {
-
   return (
     <html lang="pt-BR" suppressHydrationWarning>
       <head>
