@@ -4,10 +4,12 @@ module.exports = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  darkMode: 'class',
   theme: {
     extend: {
       colors: {
-        primary: '#0070f3',
+        primary: '#2563eb',
+        secondary: '#4f46e5',
         background: 'var(--background)',
         foreground: 'var(--foreground)',
       },
@@ -15,9 +17,20 @@ module.exports = {
         sans: ['var(--font-sans)'],
         mono: ['var(--font-mono)'],
       },
+      keyframes: {
+        wave: {
+          '0%': { backgroundPosition: '200% 0' },
+          '100%': { backgroundPosition: '-200% 0' },
+        },
+      },
+      animation: {
+        wave: 'wave 1.5s ease-in-out infinite',
+      },
     },
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/typography'),
+  ],
   future: {
     hoverOnlyWhenSupported: true,
   },

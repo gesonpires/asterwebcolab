@@ -2,7 +2,8 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import ModuleContentSkeleton from './ModuleContentSkeleton';
 
 interface ImageContent {
   type: 'image';
@@ -23,11 +24,25 @@ interface ModuleContentProps {
 }
 
 export default function ModuleContent({ content }: ModuleContentProps) {
+  const [isLoading, setIsLoading] = useState(true);
   const [loadingImages, setLoadingImages] = useState<{ [key: string]: boolean }>({});
+
+  useEffect(() => {
+    // Simulate content loading
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   const handleImageLoad = (imageUrl: string) => {
     setLoadingImages(prev => ({ ...prev, [imageUrl]: false }));
   };
+
+  if (isLoading) {
+    return <ModuleContentSkeleton />;
+  }
 
   return (
     <div className="prose dark:prose-invert max-w-none">
