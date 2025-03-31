@@ -19,28 +19,50 @@ export default function ExampleBox({
   className = ''
 }: ExampleBoxProps) {
   return (
-    <div className={`my-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500 dark:border-blue-400 ${className}`}>
+    <div 
+      data-testid="example-box"
+      className={`my-4 p-4 bg-blue-50 dark:bg-blue-900/20 rounded-lg border-l-4 border-blue-500 dark:border-blue-400 ${className}`}
+    >
       <div className="flex items-center mb-2">
         <span className="text-blue-500 dark:text-blue-400 font-bold mr-2">Exemplo</span>
         {title && (
-          <h4 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h4>
+          <h4 
+            data-testid="example-title"
+            className="text-lg font-semibold text-gray-900 dark:text-white"
+          >
+            {title}
+          </h4>
         )}
       </div>
       
-      <div className="text-gray-700 dark:text-gray-300">
+      <div 
+        data-testid="example-content"
+        className="text-gray-700 dark:text-gray-300"
+      >
         {children}
       </div>
 
       {formula && (
-        <div className="mt-4">
+        <div 
+          data-testid="example-formula"
+          className="mt-4"
+        >
           <MathDisplay formula={formula} />
         </div>
       )}
 
       {solution && (
-        <div className="mt-4 pt-4 border-t border-blue-200 dark:border-blue-800">
+        <div 
+          data-testid="example-solution"
+          className="mt-4 pt-4 border-t border-blue-200 dark:border-blue-800"
+        >
           <div className="flex items-center mb-2">
-            <span className="text-blue-500 dark:text-blue-400 font-bold mr-2">Solução</span>
+            <span 
+              data-testid="solution-label"
+              className="text-blue-500 dark:text-blue-400 font-bold mr-2"
+            >
+              Solução
+            </span>
           </div>
           <MathDisplay formula={solution} />
         </div>

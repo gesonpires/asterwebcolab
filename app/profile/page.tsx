@@ -105,8 +105,8 @@ export default function ProfilePage() {
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 gap-8">
+    <div className="container mx-auto px-4 py-8" data-testid="profile-container">
+      <div className="grid grid-cols-1 gap-8" data-testid="profile-grid">
         <UserProfile user={mockUser} onUpdateProfile={handleUpdateProfile} />
         <ProgressDashboard userProgress={mockProgress} />
       </div>

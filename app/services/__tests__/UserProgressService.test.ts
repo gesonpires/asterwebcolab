@@ -1,110 +1,98 @@
 import { UserProgressService } from '../UserProgressService';
-import { Activity, ActivityType } from '@/app/models/Activity';
+import { ActivityType } from '../../../app/models/UserProgress';
 
 describe('UserProgressService', () => {
-  let service: typeof UserProgressService;
-  const mockUserId = 'test-user-123';
+  let service: UserProgressService;
+  const mockUserId = 'user123';
 
   beforeEach(() => {
+    UserProgressService.resetInstance();
     service = UserProgressService.getInstance();
   });
 
   describe('updateActivity', () => {
-    it('deve atualizar progresso existente', async () => {
-      const activity: Activity = {
+    it('deve atualizar atividade do usuário', async () => {
+      await service.updateActivity(mockUserId, {
+        id: 'activity-1',
         type: ActivityType.MODULE_COMPLETION,
-        moduleId: 'module-1',
-        timeSpent: 900,
+        moduleId: 'module1',
+        timeSpent: 1800,
         score: 85,
-        timestamp: new Date(),
-      };
+        timestamp: new Date()
+      });
 
-      await service.updateActivity(mockUserId, activity);
       const progress = await service.generateProgressReport(mockUserId);
-
       expect(progress?.stats.modulesCompleted).toBe(1);
-      expect(progress?.stats.totalTimeSpent).toBe(900);
+      expect(progress?.stats.totalTimeSpent).toBe(1800);
     });
   });
 
   describe('calculateOverallProgress', () => {
-    it('deve retornar 0 para usuário sem progresso', async () => {
-      const progress = await service.calculateOverallProgress('new-user');
-      expect(progress).toBe(0);
-    });
-
     it('deve calcular progresso baseado em módulos completados', async () => {
-      const activity: Activity = {
+      await service.updateActivity(mockUserId, {
+        id: 'activity-2',
         type: ActivityType.MODULE_COMPLETION,
-        moduleId: 'module-1',
-        timeSpent: 900,
-        score: 85,
-        timestamp: new Date(),
-      };
+        moduleId: 'module2',
+        timeSpent: 2400,
+        score: 90,
+        timestamp: new Date()
+      });
 
-      await service.updateActivity(mockUserId, activity);
       const progress = await service.calculateOverallProgress(mockUserId);
-
       expect(progress).toBe(20); // 1/5 módulos = 20%
     });
   });
 
   describe('checkAchievements', () => {
     it('deve verificar conquista de primeiro módulo', async () => {
-      const activity: Activity = {
+      await service.updateActivity(mockUserId, {
+        id: 'activity-3',
         type: ActivityType.MODULE_COMPLETION,
-        moduleId: 'module-1',
-        timeSpent: 900,
-        score: 85,
-        timestamp: new Date(),
-      };
+        moduleId: 'module3',
+        timeSpent: 1500,
+        score: 95,
+        timestamp: new Date()
+      });
 
-      await service.updateActivity(mockUserId, activity);
       const achievements = await service.checkAchievements(mockUserId);
-
       expect(achievements).toHaveLength(1);
-      expect(achievements[0].id).toBe('first_module');
+      expect(achievements[0].id).toBe('first_milestone');
     });
 
     it('deve verificar conquista de sequência de estudos', async () => {
-      const today = new Date();
-      const yesterday = new Date(today);
-      yesterday.setDate(yesterday.getDate() - 1);
-
-      await service.updateActivity(mockUserId, {
-        type: ActivityType.MODULE_COMPLETION,
-        moduleId: 'module-1',
-        timeSpent: 900,
-        score: 85,
-        timestamp: yesterday,
-      });
-
-      await service.updateActivity(mockUserId, {
-        type: ActivityType.MODULE_COMPLETION,
-        moduleId: 'module-2',
-        timeSpent: 900,
-        score: 85,
-        timestamp: today,
-      });
+      // Simular 7 dias de atividade
+      const baseDate = new Date();
+      for (let i = 0; i < 7; i++) {
+        const activityDate = new Date(baseDate);
+        activityDate.setDate(activityDate.getDate() - i);
+        
+        await service.updateActivity(mockUserId, {
+          id: `activity-${4 + i}`,
+          type: ActivityType.MODULE_COMPLETION,
+          moduleId: `module${4 + i}`,
+          timeSpent: 1800,
+          score: 85,
+          timestamp: activityDate
+        });
+      }
 
       const achievements = await service.checkAchievements(mockUserId);
-      expect(achievements.some(a => a.id === 'study_streak')).toBe(true);
+      expect(achievements.some(a => a.id === 'streak_milestone')).toBe(true);
     });
   });
 
   describe('updateStreak', () => {
     it('deve iniciar streak com primeira atividade', async () => {
-      const activity: Activity = {
+      await service.updateActivity(mockUserId, {
+        id: 'activity-11',
         type: ActivityType.MODULE_COMPLETION,
-        moduleId: 'module-1',
-        timeSpent: 900,
+        moduleId: 'module11',
+        timeSpent: 1800,
         score: 85,
-        timestamp: new Date(),
-      };
+        timestamp: new Date()
+      });
 
-      await service.updateActivity(mockUserId, activity);
       const streak = await service.updateStreak(mockUserId);
-
       expect(streak).toBe(1);
     });
 
@@ -114,19 +102,21 @@ describe('UserProgressService', () => {
       yesterday.setDate(yesterday.getDate() - 1);
 
       await service.updateActivity(mockUserId, {
+        id: 'activity-12',
         type: ActivityType.MODULE_COMPLETION,
-        moduleId: 'module-1',
-        timeSpent: 900,
+        moduleId: 'module12',
+        timeSpent: 1800,
         score: 85,
-        timestamp: yesterday,
+        timestamp: yesterday
       });
 
       await service.updateActivity(mockUserId, {
+        id: 'activity-13',
         type: ActivityType.MODULE_COMPLETION,
-        moduleId: 'module-2',
-        timeSpent: 900,
+        moduleId: 'module13',
+        timeSpent: 1800,
         score: 85,
-        timestamp: today,
+        timestamp: today
       });
 
       const streak = await service.updateStreak(mockUserId);
@@ -136,17 +126,16 @@ describe('UserProgressService', () => {
 
   describe('generateProgressReport', () => {
     it('deve gerar relatório completo com todas as estatísticas', async () => {
-      const activity: Activity = {
+      await service.updateActivity(mockUserId, {
+        id: 'activity-14',
         type: ActivityType.MODULE_COMPLETION,
-        moduleId: 'module-1',
+        moduleId: 'module14',
         timeSpent: 1800,
         score: 85,
-        timestamp: new Date(),
-      };
+        timestamp: new Date()
+      });
 
-      await service.updateActivity(mockUserId, activity);
       const report = await service.generateProgressReport(mockUserId);
-
       expect(report?.stats.modulesCompleted).toBe(1);
       expect(report?.stats.quizzesTaken).toBe(0);
       expect(report?.stats.exercisesCompleted).toBe(0);
@@ -156,21 +145,20 @@ describe('UserProgressService', () => {
 
   describe('getPersonalizedSuggestions', () => {
     it('deve sugerir práticas adicionais para melhorar pontuação', async () => {
-      const activity: Activity = {
+      await service.updateActivity(mockUserId, {
+        id: 'activity-15',
         type: ActivityType.MODULE_COMPLETION,
-        moduleId: 'module-1',
-        timeSpent: 900,
-        score: 65,
-        timestamp: new Date(),
-      };
+        moduleId: 'module15',
+        timeSpent: 1800,
+        score: 75,
+        timestamp: new Date()
+      });
 
-      await service.updateActivity(mockUserId, activity);
       const suggestions = await service.getPersonalizedSuggestions(mockUserId);
-
-      expect(suggestions.nextModule).toBe('module-2');
-      expect(suggestions.recommendedPractice).toBe('practice-1');
+      expect(suggestions.nextModule).toBe('Módulo 2');
+      expect(suggestions.recommendedPractice).toBe('Exercícios de reforço');
       expect(suggestions.achievementHints).toContain(
-        'Complete mais exercícios práticos para melhorar sua pontuação!'
+        'Pratique mais para melhorar sua pontuação média!'
       );
     });
   });

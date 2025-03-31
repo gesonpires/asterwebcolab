@@ -6,8 +6,11 @@ const nextConfig = {
         protocol: 'https',
         hostname: '**',
       },
+      {
+        protocol: 'https',
+        hostname: 'www.youtube.com',
+      }
     ],
-    domains: ['www.youtube.com'],
   }
 }
 

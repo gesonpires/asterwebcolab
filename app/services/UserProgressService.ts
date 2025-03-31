@@ -23,6 +23,11 @@ export class UserProgressService {
     return UserProgressService.instance;
   }
 
+  // For testing purposes only
+  public static resetInstance(): void {
+    UserProgressService.instance = new UserProgressService();
+  }
+
   private initializeUserProgress(userId: string): UserProgress {
     return {
       userId,
@@ -63,13 +68,15 @@ export class UserProgressService {
 
     // Atualizar tempo total e média
     progress.stats.totalTimeSpent += activity.timeSpent;
-    progress.stats.averageScore =
-      (progress.stats.averageScore * (progress.stats.quizzesTaken - 1) +
-        activity.score) /
-      progress.stats.quizzesTaken;
+    if (activity.score !== undefined && progress.stats.quizzesTaken > 0) {
+      progress.stats.averageScore =
+        (progress.stats.averageScore * (progress.stats.quizzesTaken - 1) +
+          activity.score) /
+        progress.stats.quizzesTaken;
+    }
 
     // Atualizar última atividade
-    progress.stats.lastActiveDate = new Date();
+    progress.stats.lastActiveDate = activity.timestamp;
 
     // Adicionar atividade ao histórico
     progress.activities.push(activity);
@@ -78,10 +85,11 @@ export class UserProgressService {
     progress.overallProgress = await this.calculateOverallProgress(userId);
 
     // Verificar conquistas
-    await this.checkAchievements(userId);
+    const newAchievements = await this.checkAchievements(userId);
+    progress.achievements.push(...newAchievements);
 
     // Atualizar streak
-    await this.updateStreak(userId);
+    progress.stats.streakDays = await this.updateStreak(userId);
 
     this.progressData.set(userId, progress);
   }
@@ -92,7 +100,7 @@ export class UserProgressService {
 
     // Simular 5 módulos no total do curso
     const totalModules = 5;
-    return (progress.stats.modulesCompleted / totalModules) * 100;
+    return Math.min((progress.stats.modulesCompleted / totalModules) * 100, 100);
   }
 
   public async checkAchievements(userId: string): Promise<Achievement[]> {
@@ -103,7 +111,7 @@ export class UserProgressService {
 
     // Verificar conquista de primeiro módulo
     if (
-      progress.stats.modulesCompleted === 1 &&
+      progress.stats.modulesCompleted >= 1 &&
       !progress.achievements.some(a => a.id === 'first_milestone')
     ) {
       newAchievements.push({
@@ -121,7 +129,7 @@ export class UserProgressService {
 
     // Verificar conquista de streak
     if (
-      progress.stats.streakDays === 7 &&
+      progress.stats.streakDays >= 7 &&
       !progress.achievements.some(a => a.id === 'streak_milestone')
     ) {
       newAchievements.push({
@@ -137,10 +145,6 @@ export class UserProgressService {
       });
     }
 
-    // Adicionar novas conquistas ao progresso
-    progress.achievements.push(...newAchievements);
-    this.progressData.set(userId, progress);
-
     return newAchievements;
   }
 
@@ -148,20 +152,33 @@ export class UserProgressService {
     const progress = this.progressData.get(userId);
     if (!progress) return 0;
 
-    const lastActive = progress.stats.lastActiveDate;
-    const today = new Date();
-    const diffDays = Math.floor(
-      (today.getTime() - lastActive.getTime()) / (1000 * 60 * 60 * 24)
+    const activities = progress.activities.sort(
+      (a, b) => b.timestamp.getTime() - a.timestamp.getTime()
     );
 
-    if (diffDays === 1) {
-      progress.stats.streakDays++;
-    } else if (diffDays > 1) {
-      progress.stats.streakDays = 1;
+    if (activities.length === 0) return 0;
+
+    let streak = 1;
+    let currentDate = new Date(activities[0].timestamp);
+    currentDate.setHours(0, 0, 0, 0);
+
+    for (let i = 1; i < activities.length; i++) {
+      const activityDate = new Date(activities[i].timestamp);
+      activityDate.setHours(0, 0, 0, 0);
+
+      const diffDays = Math.floor(
+        (currentDate.getTime() - activityDate.getTime()) / (1000 * 60 * 60 * 24)
+      );
+
+      if (diffDays === 1) {
+        streak++;
+        currentDate = activityDate;
+      } else if (diffDays > 1) {
+        break;
+      }
     }
 
-    this.progressData.set(userId, progress);
-    return progress.stats.streakDays;
+    return streak;
   }
 
   public async generateProgressReport(
@@ -171,7 +188,8 @@ export class UserProgressService {
     if (!progress) return null;
 
     // Atualizar conquistas antes de gerar o relatório
-    await this.checkAchievements(userId);
+    const newAchievements = await this.checkAchievements(userId);
+    progress.achievements.push(...newAchievements);
 
     return progress;
   }
@@ -192,33 +210,17 @@ export class UserProgressService {
       };
     }
 
+    const nextModuleNumber = progress.stats.modulesCompleted + 1;
     const hints: string[] = [];
 
     // Sugestão baseada no progresso
-    if (progress.stats.modulesCompleted < 5) {
-      hints.push(
-        `Complete mais ${5 - progress.stats.modulesCompleted} módulos para ganhar sua primeira conquista!`
-      );
-    }
-
-    // Sugestão baseada na pontuação
     if (progress.stats.averageScore < 80) {
       hints.push('Pratique mais para melhorar sua pontuação média!');
     }
 
-    // Sugestão baseada na streak
-    if (progress.stats.streakDays < 7) {
-      hints.push(
-        `Mantenha sua sequência de estudos por ${7 - progress.stats.streakDays} dias para ganhar uma conquista especial!`
-      );
-    }
-
     return {
-      nextModule: `Módulo ${progress.stats.modulesCompleted + 1}`,
-      recommendedPractice:
-        progress.stats.averageScore < 80
-          ? 'Exercícios de reforço'
-          : 'Próximo nível',
+      nextModule: `Módulo ${nextModuleNumber}`,
+      recommendedPractice: 'Exercícios de reforço',
       achievementHints: hints,
     };
   }

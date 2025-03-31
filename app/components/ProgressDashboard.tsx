@@ -47,7 +47,13 @@ export default function ProgressDashboard({ userId }: { userId: string }) {
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
-        <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"></div>
+        <div 
+          role="status"
+          data-testid="loading-spinner"
+          className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-blue-500"
+        >
+          <span className="sr-only">Carregando...</span>
+        </div>
       </div>
     );
   }
@@ -73,7 +79,9 @@ export default function ProgressDashboard({ userId }: { userId: string }) {
           <div>
             <div className="flex justify-between mb-1">
               <span className="text-gray-600">Conclusão Geral</span>
-              <span className="text-gray-900 font-medium">{Math.round(progress.overallProgress)}%</span>
+              <span className="text-gray-900 font-medium" data-testid="overall-progress">
+                {Math.round(progress.overallProgress)}%
+              </span>
             </div>
             <div className="w-full bg-gray-200 rounded-full h-2.5">
               <motion.div
@@ -91,7 +99,9 @@ export default function ProgressDashboard({ userId }: { userId: string }) {
             </div>
             <div className="bg-gray-50 p-4 rounded-lg">
               <p className="text-sm text-gray-600">Módulos Completados</p>
-              <p className="text-xl font-semibold">{progress.stats.modulesCompleted}</p>
+              <p className="text-xl font-semibold" data-testid="modules-completed">
+                {progress.stats.modulesCompleted}
+              </p>
             </div>
           </div>
         </div>
@@ -108,19 +118,27 @@ export default function ProgressDashboard({ userId }: { userId: string }) {
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
           <div className="bg-gray-50 p-4 rounded-lg text-center">
             <p className="text-sm text-gray-600">Quizzes</p>
-            <p className="text-xl font-semibold">{progress.stats.quizzesTaken}</p>
+            <p className="text-xl font-semibold" data-testid="quizzes-taken">
+              {progress.stats.quizzesTaken}
+            </p>
           </div>
           <div className="bg-gray-50 p-4 rounded-lg text-center">
             <p className="text-sm text-gray-600">Exercícios</p>
-            <p className="text-xl font-semibold">{progress.stats.exercisesCompleted}</p>
+            <p className="text-xl font-semibold" data-testid="exercises-completed">
+              {progress.stats.exercisesCompleted}
+            </p>
           </div>
           <div className="bg-gray-50 p-4 rounded-lg text-center">
             <p className="text-sm text-gray-600">Média</p>
-            <p className="text-xl font-semibold">{Math.round(progress.stats.averageScore)}%</p>
+            <p className="text-xl font-semibold" data-testid="average-score">
+              {Math.round(progress.stats.averageScore)}%
+            </p>
           </div>
           <div className="bg-gray-50 p-4 rounded-lg text-center">
             <p className="text-sm text-gray-600">Conquistas</p>
-            <p className="text-xl font-semibold">{progress.stats.totalAchievements}</p>
+            <p className="text-xl font-semibold" data-testid="total-achievements">
+              {progress.stats.totalAchievements}
+            </p>
           </div>
         </div>
       </motion.div>
@@ -138,6 +156,7 @@ export default function ProgressDashboard({ userId }: { userId: string }) {
             <div
               key={achievement.id}
               className="bg-gray-50 p-4 rounded-lg flex items-center space-x-4"
+              data-testid={`achievement-${achievement.id}`}
             >
               <span className="text-2xl">{achievement.icon}</span>
               <div>
@@ -160,7 +179,7 @@ export default function ProgressDashboard({ userId }: { userId: string }) {
           <h2 className="text-2xl font-bold mb-4">Sugestões</h2>
           <div className="space-y-2">
             {suggestions.achievementHints.map((hint, index) => (
-              <div key={index} className="flex items-center space-x-2">
+              <div key={index} className="flex items-center space-x-2" data-testid={`suggestion-${index}`}>
                 <span className="text-blue-500">💡</span>
                 <p className="text-gray-700">{hint}</p>
               </div>

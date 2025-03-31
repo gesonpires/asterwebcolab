@@ -1,4 +1,4 @@
-import '@testing-library/jest-dom';
+require('@testing-library/jest-dom');
 
 // Mock do next/router
 jest.mock('next/router', () => ({
@@ -49,9 +49,7 @@ window.matchMedia =
       removeListener: function () {},
       addEventListener: function () {},
       removeEventListener: function () {},
-      dispatchEvent: function () {
-        return false;
-      },
+      dispatchEvent: function () {},
     };
   };
 

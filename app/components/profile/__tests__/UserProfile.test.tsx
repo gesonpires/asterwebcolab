@@ -1,28 +1,49 @@
 import React from 'react';
 import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import UserProfile from '../UserProfile';
-import { User } from '../../../models/User';
+import { User, ExperienceLevel } from '../../../models/User';
 
 const mockUser: User = {
-  id: 'test-user-123',
+  id: '1',
   name: 'Test User',
   email: 'test@example.com',
-  avatar: '/test-avatar.png',
   bio: 'Test bio',
   preferences: {
     theme: 'light',
     language: 'pt-BR',
     emailNotifications: true,
+    showProgress: true,
+    showAchievements: true,
+    accessibility: {
+      fontSize: 'medium',
+      highContrast: false,
+      reduceAnimations: false,
+    },
   },
   interests: [
     {
-      id: 'interest-1',
+      id: '1',
       name: 'Test Interest',
-      level: 'BEGINNER',
+      level: ExperienceLevel.BEGINNER,
     },
   ],
-  createdAt: new Date('2024-03-18'),
-  lastLogin: new Date('2024-03-18'),
+  createdAt: new Date('2024-03-14T00:00:00Z'),
+  lastLogin: new Date('2024-03-14T00:00:00Z'),
+  avatar: '/test-avatar.png',
+  isActive: true,
+  education: {
+    level: 'GRADUATE',
+    institution: 'Test University',
+    field: 'Physics',
+  },
+  primaryLanguage: 'pt-BR',
+  secondaryLanguages: ['en-US'],
+  privacy: {
+    showEmail: true,
+    showProgress: true,
+    showSocial: true,
+    publicProfile: true,
+  },
 };
 
 describe('UserProfile', () => {
@@ -30,26 +51,23 @@ describe('UserProfile', () => {
     render(<UserProfile user={mockUser} />);
 
     // Verificar informações básicas
-    expect(screen.getByText('Test User')).toBeInTheDocument();
-    expect(screen.getByText('test@example.com')).toBeInTheDocument();
-    expect(screen.getByText('Test bio')).toBeInTheDocument();
+    expect(screen.getByTestId('user-name')).toHaveTextContent('Test User');
+    expect(screen.getByTestId('user-email')).toHaveTextContent('test@example.com');
+    expect(screen.getByTestId('user-bio')).toHaveTextContent('Test bio');
 
     // Verificar preferências
-    expect(screen.getByText('light')).toBeInTheDocument();
-    expect(screen.getByText('Português')).toBeInTheDocument();
-    expect(screen.getByText('Ativadas')).toBeInTheDocument();
+    expect(screen.getByTestId('user-theme')).toHaveTextContent('light');
+    expect(screen.getByTestId('user-language')).toHaveTextContent('pt-BR');
+    expect(screen.getByTestId('user-notifications')).toHaveTextContent('Ativadas');
 
     // Verificar áreas de interesse
+    expect(screen.getByTestId('interest-1')).toBeInTheDocument();
     expect(screen.getByText('Test Interest')).toBeInTheDocument();
-    expect(
-      screen.getByText((content, element) => {
-        return element?.textContent === 'Nível: BEGINNER';
-      })
-    ).toBeInTheDocument();
+    expect(screen.getByText('Nível: BEGINNER')).toBeInTheDocument();
 
     // Verificar datas
-    const dates = screen.getAllByText('18/03/2024');
-    expect(dates).toHaveLength(2);
+    expect(screen.getByTestId('user-created-at')).toHaveTextContent('Membro desde: 14/03/2024');
+    expect(screen.getByTestId('user-last-login')).toHaveTextContent('Último acesso: 14/03/2024');
   });
 
   it('allows editing profile information', async () => {
@@ -57,18 +75,18 @@ describe('UserProfile', () => {
     render(<UserProfile user={mockUser} onUpdateProfile={mockUpdateProfile} />);
 
     // Iniciar edição
-    fireEvent.click(screen.getByText('Editar Perfil'));
+    fireEvent.click(screen.getByTestId('edit-profile-button'));
 
     // Editar nome
-    const nameInput = screen.getByDisplayValue(mockUser.name);
+    const nameInput = screen.getByTestId('name-input');
     fireEvent.change(nameInput, { target: { value: 'Updated Name' } });
 
     // Editar bio
-    const bioInput = screen.getByDisplayValue(mockUser.bio);
+    const bioInput = screen.getByTestId('bio-input');
     fireEvent.change(bioInput, { target: { value: 'Updated bio' } });
 
     // Salvar alterações
-    fireEvent.click(screen.getByText('Salvar'));
+    fireEvent.click(screen.getByTestId('save-button'));
 
     await waitFor(() => {
       expect(mockUpdateProfile).toHaveBeenCalledWith(
@@ -85,17 +103,17 @@ describe('UserProfile', () => {
     render(<UserProfile user={mockUser} onUpdateProfile={mockUpdateProfile} />);
 
     // Iniciar edição
-    fireEvent.click(screen.getByText('Editar Perfil'));
+    fireEvent.click(screen.getByTestId('edit-profile-button'));
 
     // Editar nome
-    const nameInput = screen.getByDisplayValue(mockUser.name);
+    const nameInput = screen.getByTestId('name-input');
     fireEvent.change(nameInput, { target: { value: 'Updated Name' } });
 
     // Cancelar edição
-    fireEvent.click(screen.getByText('Cancelar'));
+    fireEvent.click(screen.getByTestId('cancel-button'));
 
     // Verificar se o nome original ainda está sendo exibido
-    expect(screen.getByText(mockUser.name)).toBeInTheDocument();
+    expect(screen.getByTestId('user-name')).toHaveTextContent(mockUser.name);
     expect(mockUpdateProfile).not.toHaveBeenCalled();
   });
 
@@ -104,14 +122,14 @@ describe('UserProfile', () => {
     render(<UserProfile user={mockUser} onUpdateProfile={mockUpdateProfile} />);
 
     // Iniciar edição
-    fireEvent.click(screen.getByText('Editar Perfil'));
+    fireEvent.click(screen.getByTestId('edit-profile-button'));
 
     // Alternar notificações por email
-    const checkbox = screen.getByRole('checkbox');
+    const checkbox = screen.getByTestId('email-notifications-toggle');
     fireEvent.click(checkbox);
 
     // Salvar alterações
-    fireEvent.click(screen.getByText('Salvar'));
+    fireEvent.click(screen.getByTestId('save-button'));
 
     await waitFor(() => {
       expect(mockUpdateProfile).toHaveBeenCalledWith(
@@ -127,44 +145,36 @@ describe('UserProfile', () => {
   it('displays user interests correctly', () => {
     render(<UserProfile user={mockUser} />);
 
-    const interest = screen.getByText('Test Interest');
-    const level = screen.getByText('Nível: BEGINNER');
-
-    expect(interest).toBeInTheDocument();
-    expect(level).toBeInTheDocument();
+    const interestElement = screen.getByTestId('interest-1');
+    expect(interestElement).toBeInTheDocument();
+    expect(interestElement).toHaveTextContent('Test Interest');
+    expect(interestElement).toHaveTextContent('Nível: BEGINNER');
   });
 
   it('displays account information correctly', () => {
     render(<UserProfile user={mockUser} />);
 
-    expect(screen.getByText('Test User')).toBeInTheDocument();
-    expect(screen.getByText('test@example.com')).toBeInTheDocument();
-    expect(screen.getByText('Test bio')).toBeInTheDocument();
-    expect(screen.getByText('light')).toBeInTheDocument();
-    expect(screen.getByText('Português')).toBeInTheDocument();
-    expect(screen.getByText('Ativadas')).toBeInTheDocument();
+    expect(screen.getByTestId('user-name')).toHaveTextContent('Test User');
+    expect(screen.getByTestId('user-email')).toHaveTextContent('test@example.com');
+    expect(screen.getByTestId('user-bio')).toHaveTextContent('Test bio');
+    expect(screen.getByTestId('user-theme')).toHaveTextContent('light');
+    expect(screen.getByTestId('user-language')).toHaveTextContent('pt-BR');
+    expect(screen.getByTestId('user-notifications')).toHaveTextContent('Ativadas');
+    expect(screen.getByTestId('interest-1')).toBeInTheDocument();
     expect(screen.getByText('Test Interest')).toBeInTheDocument();
-    expect(
-      screen.getByText((content, element) => {
-        return element?.textContent === 'Nível: BEGINNER';
-      })
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText((content, element) => {
-        return element?.textContent === '18/03/2024';
-      })
-    ).toBeInTheDocument();
+    expect(screen.getByText('Nível: BEGINNER')).toBeInTheDocument();
+    expect(screen.getByTestId('user-created-at')).toHaveTextContent('Membro desde: 14/03/2024');
   });
 
   it('displays edit profile button', () => {
     render(<UserProfile user={mockUser} />);
-    expect(screen.getByText('Editar Perfil')).toBeInTheDocument();
+    expect(screen.getByTestId('edit-profile-button')).toBeInTheDocument();
   });
 
   it('displays user avatar', () => {
     render(<UserProfile user={mockUser} />);
-    const avatar = screen.getByAltText('Test User');
-    expect(avatar).toHaveAttribute('src', '/test-avatar.png');
-    expect(avatar).toHaveClass('w-20', 'h-20', 'rounded-full');
+    const avatar = screen.getByTestId('user-avatar');
+    expect(avatar).toBeInTheDocument();
+    expect(avatar).toHaveClass('rounded-full', 'object-cover');
   });
 });

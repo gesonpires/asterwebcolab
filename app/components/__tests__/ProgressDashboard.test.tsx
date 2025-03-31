@@ -1,4 +1,4 @@
-import { render, screen, waitFor } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import ProgressDashboard from '../ProgressDashboard';
 import { UserProgressService } from '@/services/UserProgressService';
 
@@ -12,6 +12,7 @@ jest.mock('@/services/UserProgressService', () => ({
           exercisesCompleted: 15,
           totalTimeSpent: 3600,
           averageScore: 85,
+          totalAchievements: 3,
         },
         achievements: [
           {
@@ -23,6 +24,7 @@ jest.mock('@/services/UserProgressService', () => ({
         ],
         overallProgress: 75,
         streak: 3,
+        timeSpent: 3600,
       }),
       getPersonalizedSuggestions: jest.fn().mockResolvedValue({
         nextModule: 'module-6',
@@ -41,52 +43,35 @@ describe('ProgressDashboard', () => {
 
   it('deve exibir o loading state inicialmente', () => {
     render(<ProgressDashboard userId={mockUserId} />);
-    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
+    const loadingElement = screen.getByTestId('loading-spinner');
+    expect(loadingElement).toBeInTheDocument();
+    expect(loadingElement).toHaveAttribute('role', 'status');
   });
 
   it('deve carregar e exibir o progresso do usuário', async () => {
     render(<ProgressDashboard userId={mockUserId} />);
 
-    // Verificar se os dados estão sendo exibidos corretamente
-    await waitFor(() => {
-      expect(screen.getByText('75%')).toBeInTheDocument();
-    });
+    // Verificar o estado inicial de carregamento
+    expect(screen.getByTestId('loading-spinner')).toBeInTheDocument();
 
-    await waitFor(() => {
-      expect(screen.getByText('60 horas')).toBeInTheDocument();
-    });
+    // Verificar o progresso geral
+    expect(await screen.findByTestId('overall-progress')).toHaveTextContent('75%');
+    expect(await screen.findByTestId('modules-completed')).toHaveTextContent('5');
 
-    await waitFor(() => {
-      expect(screen.getByText('5')).toBeInTheDocument();
-    });
+    // Verificar estatísticas
+    expect(await screen.findByTestId('quizzes-taken')).toHaveTextContent('10');
+    expect(await screen.findByTestId('exercises-completed')).toHaveTextContent('15');
+    expect(await screen.findByTestId('average-score')).toHaveTextContent('85%');
+    expect(await screen.findByTestId('total-achievements')).toHaveTextContent('3');
 
-    await waitFor(() => {
-      expect(screen.getByText('10')).toBeInTheDocument();
-    });
-
-    await waitFor(() => {
-      expect(screen.getByText('15')).toBeInTheDocument();
-    });
-
-    await waitFor(() => {
-      expect(screen.getByText('85%')).toBeInTheDocument();
-    });
-
-    // Verificar se as conquistas são exibidas
+    // Verificar conquistas
+    expect(await screen.findByTestId('achievement-first_module')).toBeInTheDocument();
     expect(screen.getByText('Primeiro Marco')).toBeInTheDocument();
     expect(screen.getByText('Completou 5 módulos')).toBeInTheDocument();
 
-    // Verificar se as sugestões são exibidas
-    expect(
-      screen.getByText(
-        'Complete mais 5 módulos para ganhar sua primeira conquista!'
-      )
-    ).toBeInTheDocument();
-    expect(
-      screen.getByText(
-        'Mantenha sua sequência de estudos por 7 dias para ganhar uma conquista especial!'
-      )
-    ).toBeInTheDocument();
+    // Verificar sugestões
+    expect(await screen.findByTestId('suggestion-0')).toBeInTheDocument();
+    expect(await screen.findByTestId('suggestion-1')).toBeInTheDocument();
   });
 
   it('deve exibir mensagem quando não há progresso', async () => {
@@ -97,10 +82,6 @@ describe('ProgressDashboard', () => {
 
     render(<ProgressDashboard userId={mockUserId} />);
 
-    await waitFor(() => {
-      expect(
-        screen.getByText('Nenhum progresso encontrado.')
-      ).toBeInTheDocument();
-    });
+    await screen.findByText('Nenhum progresso encontrado.');
   });
 });

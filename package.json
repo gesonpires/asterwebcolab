@@ -29,10 +29,9 @@
     "react-latex-next": "^3.0.0"
   },
   "devDependencies": {
-    "@tailwindcss/aspect-ratio": "^0.4.2",
-    "@tailwindcss/forms": "^0.5.10",
-    "@tailwindcss/postcss": "^4.0.17",
-    "@tailwindcss/typography": "^0.5.16",
+    "@babel/preset-env": "^7.26.9",
+    "@babel/preset-react": "^7.26.3",
+    "@babel/preset-typescript": "^7.27.0",
     "@testing-library/jest-dom": "^6.6.3",
     "@testing-library/react": "^14.3.1",
     "@testing-library/user-event": "^14.6.1",
@@ -42,7 +41,7 @@
     "@types/react-dom": "^18.2.14",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "@typescript-eslint/parser": "^6.21.0",
-    "autoprefixer": "^10.4.21",
+    "autoprefixer": "^10.4.16",
     "eslint": "^8.52.0",
     "eslint-config-next": "14.0.0",
     "eslint-config-prettier": "^9.1.0",
@@ -53,9 +52,9 @@
     "jest": "^29.7.0",
     "jest-environment-jsdom": "^29.7.0",
     "lint-staged": "^15.5.0",
-    "postcss": "^8.5.3",
+    "postcss": "^8.4.31",
     "prettier": "^3.5.3",
-    "tailwindcss": "^4.0.17",
+    "tailwindcss": "^3.3.0",
     "typescript": "^5.2.2"
   },
   "lint-staged": {

@@ -22,7 +22,10 @@ export default function MathDisplay({
   });
 
   return (
-    <div className={`my-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg text-center ${className}`}>
+    <div 
+      data-testid="math-display"
+      className={`my-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg text-center ${className}`}
+    >
       {label && (
         <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">
           {label}
