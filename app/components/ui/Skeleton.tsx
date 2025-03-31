@@ -12,7 +12,9 @@ export default function Skeleton({
   animation = 'pulse',
 }: SkeletonProps) {
   const baseClasses = 'bg-gray-200 dark:bg-gray-700';
-  const animationClasses = animation === 'pulse' ? 'animate-pulse' : 'animate-wave';
+  const animationClasses = animation === 'pulse' 
+    ? 'animate-pulse' 
+    : 'animate-wave bg-gradient-to-r from-gray-200 via-gray-300 to-gray-200 dark:from-gray-700 dark:via-gray-600 dark:to-gray-700 bg-[length:200%_100%]';
   
   const variantClasses = {
     rectangular: 'rounded',

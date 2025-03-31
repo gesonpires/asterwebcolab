@@ -2,7 +2,7 @@ import Skeleton from '../ui/Skeleton';
 
 export default function TrailCardSkeleton() {
   return (
-    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+    <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden border border-gray-200 dark:border-gray-700">
       <Skeleton className="h-48 w-full" />
       <div className="p-6 space-y-4">
         <Skeleton variant="text" className="w-3/4 h-6" />
@@ -24,7 +24,7 @@ export default function TrailCardSkeleton() {
         
         <Skeleton 
           variant="rectangular" 
-          className="w-full h-10 mt-6 rounded-md" 
+          className="w-full h-10 mt-6 rounded-md bg-primary/10 dark:bg-primary/20" 
         />
       </div>
     </div>
