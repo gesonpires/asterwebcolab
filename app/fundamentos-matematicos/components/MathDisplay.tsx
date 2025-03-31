@@ -4,34 +4,30 @@ import katex from 'katex';
 import 'katex/dist/katex.min.css';
 
 interface MathDisplayProps {
-  formula: string;
-  display?: boolean;
-  label?: string;
+  math: string;
   className?: string;
 }
 
-export default function MathDisplay({ 
-  formula, 
-  display = true, 
-  label,
-  className = ''
+export default function MathDisplay({
+  math,
+  className = '',
 }: MathDisplayProps) {
-  const html = katex.renderToString(formula, {
-    displayMode: display,
-    throwOnError: false,
-  });
-
-  return (
-    <div 
-      data-testid="math-display"
-      className={`my-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-lg text-center ${className}`}
-    >
-      {label && (
-        <div className="text-sm text-gray-500 dark:text-gray-400 mb-2">
-          {label}
-        </div>
-      )}
-      <div dangerouslySetInnerHTML={{ __html: html }} />
-    </div>
-  );
+  try {
+    return (
+      <div
+        className={className}
+        dangerouslySetInnerHTML={{
+          __html: katex.renderToString(math, {
+            throwOnError: false,
+            displayMode: true,
+            strict: false,
+            trust: true,
+          }),
+        }}
+      />
+    );
+  } catch (error) {
+    console.error('Error rendering math:', error);
+    return <div className="text-red-500">Error rendering equation</div>;
+  }
 }
