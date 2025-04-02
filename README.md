@@ -1,39 +1,35 @@
-# Cadernos Digitais
+# AsterWebColab - Plataforma de Aprendizado Interativo de Física
 
-Uma plataforma educacional interativa para alunos e professores, com foco em conteúdo de astronomia e física.
+Uma plataforma web interativa para ensino de física, desenvolvida com Next.js, React e TypeScript.
 
-## Funcionalidades
+## Características
 
-### Para Alunos
-- Conteúdo interativo com texto, imagens e vídeos
-- Exercícios e quizzes para testar conhecimentos
-- Simulações interativas de conceitos científicos
-- Acompanhamento de progresso
-
-### Para Professores
-- Acesso a recursos didáticos adicionais
-- Sistema de anotações por tópico
-- Materiais para download (apresentações, atividades, avaliações)
-- Guias e orientações pedagógicas
+- Simulações físicas interativas
+- Análise de respostas discursivas
+- Mapas conceituais interativos
+- Interface moderna e responsiva
+- Suporte a tema claro/escuro
+- Acessibilidade aprimorada
 
 ## Tecnologias Utilizadas
 
-- [Next.js](https://nextjs.org/) - Framework React para produção
-- [TypeScript](https://www.typescriptlang.org/) - JavaScript com tipagem estática
-- [Tailwind CSS](https://tailwindcss.com/) - Framework CSS utilitário
-- [Framer Motion](https://www.framer.com/motion/) - Biblioteca de animações
+- Next.js 14
+- React 18
+- TypeScript
+- Tailwind CSS
+- React Flow
+- Canvas API
 
-## Pré-requisitos
+## Requisitos
 
-- Node.js 18.x ou superior
+- Node.js 18 ou superior
 - npm ou yarn
 
 ## Instalação
 
 1. Clone o repositório:
 ```bash
-git clone https://github.com/seu-usuario/cadernos-digitais.git
-cd cadernos-digitais
+git clone https://github.com/seu-usuario/asterwebcolab.git
 ```
 
 2. Instale as dependências:
@@ -43,50 +39,60 @@ npm install
 yarn install
 ```
 
-3. Execute o servidor de desenvolvimento:
+3. Execute o projeto em modo de desenvolvimento:
 ```bash
 npm run dev
 # ou
 yarn dev
 ```
 
-4. Abra [http://localhost:3000](http://localhost:3000) no seu navegador.
+4. Acesse [http://localhost:3000](http://localhost:3000) no seu navegador.
 
 ## Estrutura do Projeto
 
 ```
-app/
-  cadernos/
-    aluno/              # Interface do aluno
-      [topicId]/       # Páginas dinâmicas por tópico
-    professor/         # Interface do professor
-      [topicId]/      # Páginas dinâmicas por tópico
-    components/        # Componentes compartilhados
-      ContentViewer.tsx
-      InteractiveExercises.tsx
-      ResourceDownloader.tsx
-      TeacherNotes.tsx
-    data/             # Dados e configurações
-      exercises.ts
-      topics.ts
-public/
-  images/            # Imagens e recursos estáticos
-    topics/
-    resources/
+asterwebcolab/
+├── app/
+│   ├── components/
+│   │   └── interactive/
+│   │       ├── examples/
+│   │       ├── types.ts
+│   │       ├── utils.ts
+│   │       └── ReactFlowConfig.ts
+│   └── interactive-learning/
+│       └── page.tsx
+├── public/
+└── ...
 ```
 
-## Contribuindo
+## Componentes Principais
+
+### PhysicsSimulation
+Componente para renderização de simulações físicas usando Canvas API.
+
+### DiscursiveAnswer
+Componente para análise de respostas discursivas dos alunos.
+
+### ConceptMap
+Componente para visualização de mapas conceituais interativos.
+
+### InteractivePhysicsLesson
+Componente que combina simulações com respostas discursivas.
+
+## Contribuição
 
 1. Faça um fork do projeto
-2. Crie uma branch para sua feature (`git checkout -b feature/nova-feature`)
-3. Faça commit das suas alterações (`git commit -am 'Adiciona nova feature'`)
-4. Faça push para a branch (`git push origin feature/nova-feature`)
-5. Crie um Pull Request
+2. Crie uma branch para sua feature (`git checkout -b feature/AmazingFeature`)
+3. Commit suas mudanças (`git commit -m 'Add some AmazingFeature'`)
+4. Push para a branch (`git push origin feature/AmazingFeature`)
+5. Abra um Pull Request
 
 ## Licença
 
-Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE.md](LICENSE.md) para detalhes.
+Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICENSE) para detalhes.
 
 ## Contato
 
-Para dúvidas ou sugestões, por favor abra uma issue no repositório.
+Seu Nome - [@seu_twitter](https://twitter.com/seu_twitter) - email@exemplo.com
+
+Link do Projeto: [https://github.com/seu-usuario/asterwebcolab](https://github.com/seu-usuario/asterwebcolab)

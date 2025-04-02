@@ -53,7 +53,7 @@ const StudentWorkbook = () => {
           <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">
             Caderno Digital
           </h1>
-          <p className="text-gray-600 dark:text-gray-400">
+          <p className="text-gray-700 dark:text-gray-300">
             Explore os tópicos e acompanhe seu progresso
           </p>
         </div>
@@ -82,7 +82,7 @@ const StudentWorkbook = () => {
               placeholder="Buscar tópicos..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="w-full px-4 py-2 rounded-lg bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 text-gray-700 dark:text-gray-300"
             />
           </div>
         </div>

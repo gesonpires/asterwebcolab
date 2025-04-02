@@ -63,7 +63,7 @@ const ModuleContent = ({ trailId, moduleId }: ModuleContentProps) => {
               return (
                 <p
                   key={itemIndex}
-                  className="text-gray-600 dark:text-gray-300 mb-4"
+                  className="text-gray-700 dark:text-gray-300 mb-4"
                   dangerouslySetInnerHTML={{ __html: item }}
                 />
               );
@@ -81,7 +81,7 @@ const ModuleContent = ({ trailId, moduleId }: ModuleContentProps) => {
                     />
                   </div>
                   {item.caption && (
-                    <p className="text-sm text-center text-gray-500 dark:text-gray-400 mt-4">
+                    <p className="text-sm text-center text-gray-600 dark:text-gray-400 mt-4">
                       {item.caption}
                     </p>
                   )}

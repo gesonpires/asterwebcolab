@@ -47,11 +47,11 @@ export default function TrailProgress({ trailId, modules }: TrailProgressProps) 
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
               )}
-              <span className={`${moduleProgress.completed ? 'text-green-600 dark:text-green-400' : 'text-gray-600 dark:text-gray-400'}`}>
+              <span className={`${moduleProgress.completed ? 'text-green-600 dark:text-green-400' : 'text-gray-700 dark:text-gray-300'}`}>
                 {module}
               </span>
               {moduleProgress.lastAccessed && (
-                <span className="ml-auto text-xs text-gray-500">
+                <span className="ml-auto text-xs text-gray-600 dark:text-gray-400">
                   Último acesso: {new Date(moduleProgress.lastAccessed).toLocaleDateString()}
                 </span>
               )}
