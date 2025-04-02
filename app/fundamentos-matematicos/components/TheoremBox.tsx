@@ -1,42 +1,29 @@
 'use client';
 
-import { ReactNode } from 'react';
+import { motion } from 'framer-motion';
 import MathDisplay from './MathDisplay';
 
-interface TheoremBoxProps {
+export interface TheoremBoxProps {
   title: string;
-  children: ReactNode;
-  proof?: ReactNode;
-  className?: string;
+  content: string;
+  formula?: string;
 }
 
-export default function TheoremBox({ 
-  title, 
-  children, 
-  proof,
-  className = ''
-}: TheoremBoxProps) {
+export default function TheoremBox({ title, content, formula }: TheoremBoxProps) {
   return (
-    <div className={`my-6 p-6 bg-white dark:bg-gray-800 rounded-lg border-2 border-blue-500 dark:border-blue-400 ${className}`}>
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6"
+    >
       <div className="flex items-center mb-4">
-        <span className="text-blue-500 dark:text-blue-400 font-bold mr-2">Teorema</span>
-        <h3 className="text-lg font-semibold text-gray-900 dark:text-white">{title}</h3>
+        <div className="w-2 h-2 bg-primary rounded-full mr-2" />
+        <h3 className="text-xl font-semibold text-gray-900 dark:text-white">
+          {title}
+        </h3>
       </div>
-      
-      <div className="text-gray-700 dark:text-gray-300">
-        {children}
-      </div>
-
-      {proof && (
-        <div className="mt-6 pt-4 border-t border-gray-200 dark:border-gray-700">
-          <div className="flex items-center mb-2">
-            <span className="text-green-500 dark:text-green-400 font-bold mr-2">Demonstração</span>
-          </div>
-          <div className="text-gray-700 dark:text-gray-300">
-            {proof}
-          </div>
-        </div>
-      )}
-    </div>
+      <p className="text-gray-700 dark:text-gray-300">{content}</p>
+      {formula && <MathDisplay math={formula} />}
+    </motion.div>
   );
 }

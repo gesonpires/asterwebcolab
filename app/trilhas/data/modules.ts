@@ -144,7 +144,7 @@ export const moduleContents: ModuleContents = {
             'As constelações possuem um significado cultural profundo. Em diversas culturas, elas serviram como base para a criação de mitos, lendas e calendários, ajudando na orientação para a navegação e na organização das atividades agrícolas e festivas.',
             {
               image: '/images/trails/constellation-myths.jpg',
-              caption: 'Ilustração que representa mitos associados às constelações',
+              caption: `Ilustração que representa mitos associados às constelações`,
             },
             'Por exemplo, a constelação de Orion foi interpretada de maneira distinta entre gregos, egípcios e povos indígenas, refletindo valores e crenças próprios de cada sociedade.',
             'O estudo dessas histórias nos mostra como a humanidade buscou explicar os fenômenos naturais e como o céu influenciou as artes, a religião e a ciência ao longo dos séculos.',
@@ -177,7 +177,7 @@ export const moduleContents: ModuleContents = {
             '<div class="box-ilustrativo" style="padding: 1rem; border: 1px solid #ccc; background: #f9f9f9;">Dica: Imagine a teia cósmica como uma rede onde cada nó é um aglomerado de galáxias, interligados por filamentos de matéria escura.</div>',
             {
               image: '/images/trails/cosmic-web.jpg',
-              caption: 'Representação artística da teia cósmica formada por filamentos de galáxias',
+              caption: `Representação artística da teia cósmica formada por filamentos de galáxias`,
             },
             'Essa estrutura revela a história da formação do universo e os processos de interação gravitacional entre os seus componentes.',
           ],

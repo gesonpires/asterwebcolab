@@ -20,62 +20,51 @@ export default function CalculoPage() {
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6">Derivadas</h2>
 
-          <DefinitionBox term="Derivada">
-            A derivada de uma função f em um ponto x₀ é o limite:
-            {`
-              f'(x₀) = lim(h→0) [f(x₀ + h) - f(x₀)]/h
-            `}
-          </DefinitionBox>
+          <DefinitionBox 
+            title="Derivada"
+            content="A derivada de uma função f em um ponto x₀ é o limite:"
+            formula="f'(x_0) = \\lim_{h \\to 0} \\frac{f(x_0 + h) - f(x_0)}{h}"
+          />
 
-          <TheoremBox title="Regras de Derivação">
-            Para funções f e g deriváveis:
-            {`
-              1. (f + g)' = f' + g'
-              2. (fg)' = f'g + fg'
-              3. (f/g)' = (f'g - fg')/g²
-              4. (f∘g)' = (f'∘g)g'
-            `}
-          </TheoremBox>
+          <TheoremBox 
+            title="Regras de Derivação"
+            content="Para funções f e g deriváveis:"
+            formula="\\begin{align*} 1. &\\ (f + g)' = f' + g' \\\\ 2. &\\ (fg)' = f'g + fg' \\\\ 3. &\\ (f/g)' = \\frac{f'g - fg'}{g^2} \\\\ 4. &\\ (f \\circ g)' = (f' \\circ g)g' \\end{align*}"
+          />
 
-          <ExampleBox title="Derivada de x²">
-            Usando a definição:
-            {`
-              f(x) = x²
-              f'(x) = lim(h→0) [(x + h)² - x²]/h
-              = lim(h→0) [x² + 2xh + h² - x²]/h
-              = lim(h→0) [2xh + h²]/h
-              = lim(h→0) 2x + h
-              = 2x
-            `}
-          </ExampleBox>
+          <ExampleBox 
+            title="Derivada de x²"
+            content="Usando a definição:"
+            formula="\\begin{align*} f(x) &= x^2 \\\\ f'(x) &= \\lim_{h \\to 0} \\frac{(x + h)^2 - x^2}{h} \\\\ &= \\lim_{h \\to 0} \\frac{x^2 + 2xh + h^2 - x^2}{h} \\\\ &= \\lim_{h \\to 0} \\frac{2xh + h^2}{h} \\\\ &= \\lim_{h \\to 0} 2x + h \\\\ &= 2x \\end{align*}"
+          />
         </section>
 
         <section className="mb-12">
           <h2 className="text-2xl font-semibold mb-6">Integrais</h2>
 
-          <DefinitionBox term="Integral Definida">
-            A integral definida de f de a até b é:
-            {`
-              ∫(a→b) f(x)dx = lim(n→∞) Σ(i=1→n) f(xᵢ*)Δx
-            `}
-          </DefinitionBox>
+          <DefinitionBox 
+            title="Integral Definida"
+            content="A integral definida de f de a até b é:"
+            formula="\\int_a^b f(x)dx = \\lim_{n \\to \\infty} \\sum_{i=1}^n f(x_i^*)\\Delta x"
+          />
 
-          <TheoremBox title="Teorema Fundamental do Cálculo">
-            Se F é uma primitiva de f, então:
-            {`
-              ∫(a→b) f(x)dx = F(b) - F(a)
-            `}
-          </TheoremBox>
+          <TheoremBox 
+            title="Teorema Fundamental do Cálculo"
+            content="Se F é uma primitiva de f, então:"
+            formula="\\int_a^b f(x)dx = F(b) - F(a)"
+          />
 
           <ProofBlock>
-            Seja P uma partição de [a,b] e F uma primitiva de f: F(b) - F(a) = Σ(F(xᵢ) - F(xᵢ₋₁)) =
-            Σf(cᵢ)(xᵢ - xᵢ₋₁) = ∫(a→b) f(x)dx
+            Seja P uma partição de [a,b] e F uma primitiva de f:
+            {`
+              F(b) - F(a) = Σ(F(xᵢ) - F(xᵢ₋₁)) = Σf(cᵢ)(xᵢ - xᵢ₋₁) = ∫(a→b) f(x)dx
+            `}
           </ProofBlock>
 
-          <NoteBox>
-            O Teorema Fundamental do Cálculo estabelece a conexão entre derivação e integração,
-            sendo fundamental para o desenvolvimento do cálculo.
-          </NoteBox>
+          <NoteBox
+            title="Observação"
+            content="O Teorema Fundamental do Cálculo estabelece a conexão entre derivação e integração, sendo fundamental para o desenvolvimento do cálculo."
+          />
         </section>
       </div>
     </div>

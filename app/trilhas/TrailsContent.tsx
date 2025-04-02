@@ -4,100 +4,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import TrailCard from '../components/trails/TrailCard';
 import TrailCardSkeleton from '../components/trails/TrailCardSkeleton';
-
-interface Trail {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  duration: string;
-  level: string;
-  modules: string[];
-}
-
-const trails: Trail[] = [
-  {
-    id: 1,
-    title: 'Fundamentos de Astronomia',
-    description: 'Aprenda os conceitos básicos da astronomia, desde o sistema solar até as galáxias.',
-    image: '/images/trails/astronomy-basics.jpg',
-    duration: '4 semanas',
-    level: 'Iniciante',
-    modules: [
-      'Introdução à Astronomia',
-      'Sistema Solar',
-      'Estrelas e Constelações',
-      'Galáxias e Universo'
-    ]
-  },
-  {
-    id: 2,
-    title: 'Gravitação Universal',
-    description: 'Explore as leis que governam o movimento dos corpos celestes.',
-    image: '/images/trails/gravity.jpg',
-    duration: '3 semanas',
-    level: 'Intermediário',
-    modules: [
-      'Leis de Kepler',
-      'Lei da Gravitação Universal',
-      'Órbitas e Trajetórias'
-    ]
-  },
-  {
-    id: 3,
-    title: 'Astrofísica Moderna',
-    description: 'Descubra os mistérios dos buracos negros, matéria escura e energia escura.',
-    image: '/images/trails/astrophysics.jpg',
-    duration: '6 semanas',
-    level: 'Avançado',
-    modules: [
-      'Relatividade Especial',
-      'Buracos Negros',
-      'Matéria e Energia Escura',
-      'Cosmologia Moderna'
-    ]
-  },
-  {
-    id: 4,
-    title: 'Estrelas',
-    description: 'Entenda qual a importância da existênci das estrelas para a composição química do Universo.',
-    image: '/images/trails/stars.jpg',
-    duration: '4 semanas',
-    level: 'Intermediário',
-    modules: [
-      'Tipos de estrelas',
-      'Diagrama HR',
-      'Evolução Estelar'
-    ]
-  },
-  {
-    id: 5,
-    title: 'Interações na natureza',
-    description: 'Aprenda o que é o modelo-padrão e fique por dentro do que é mais atual no entendimento da matéria.',
-    image: '/images/trails/interactions.jpg',
-    duration: '4 semanas',
-    level: 'Avançado',
-    modules: [
-      'Tipos de interações',
-      'Mediadores',
-      'Modelo-padrão de interações'
-    ]
-  },
-  {
-    id: 6,
-    title: 'Nucleossíntese',
-    description: 'Descubra como e onde foram produzidos os elementos químicos.',
-    image: '/images/trails/p-table.jpg',
-    duration: '4 semanas',
-    level: 'Avançado',
-    modules: [
-      'Fusão Nuclear',
-      'Tunelamento quântico',
-      'Cadeia p-p',
-      'Ciclo CNO'
-    ]
-  }
-];
+import { trails } from './data';
 
 export default function TrailsContent() {
   const [isLoading, setIsLoading] = useState(true);
@@ -133,7 +40,7 @@ export default function TrailsContent() {
           <select
             value={selectedLevel}
             onChange={(e) => setSelectedLevel(e.target.value)}
-            className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md px-4 py-2"
+            className="bg-white dark:bg-gray-800 border border-gray-300 dark:border-gray-700 rounded-md px-4 py-2 text-gray-700 dark:text-gray-300"
           >
             <option value="all">Todos os níveis</option>
             <option value="iniciante">Iniciante</option>

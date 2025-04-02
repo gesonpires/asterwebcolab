@@ -1,165 +1,61 @@
 'use client';
 
-import { motion } from 'framer-motion';
-import Image from 'next/image';
 import { useParams } from 'next/navigation';
 import { trails } from '../data';
-import { useStudentProgress } from '@/hooks/useStudentProgress';
+import { notFound } from 'next/navigation';
+import Link from 'next/link';
 
-const TrailPage = () => {
-  const { trailId } = useParams();
-  const trailIdNum = Number(trailId);
-  const trail = trails.find(t => t.id === trailIdNum);
-  const { getTrailProgress, getTrailCompletionPercentage } = useStudentProgress();
+export default function TrailPage() {
+  const params = useParams();
+  const trailId = Number(params.trailId);
+  const trail = trails.find(t => t.id === trailId);
 
   if (!trail) {
-    return (
-      <div className="min-h-screen flex items-center justify-center">
-        <div className="text-center">
-          <h1 className="text-2xl font-bold text-gray-900 dark:text-white mb-4">
-            Trilha não encontrada
-          </h1>
-          <p className="text-gray-600 dark:text-gray-300">
-            A trilha que você está procurando não existe.
-          </p>
-        </div>
-      </div>
-    );
+    notFound();
   }
 
-  const trailProgress = getTrailProgress(trailIdNum);
-  const completionPercentage = getTrailCompletionPercentage(trailIdNum, trail.modules.length);
-
   return (
-    <div className="min-h-screen py-12">
-      <motion.main
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5 }}
-        className="container mx-auto px-4"
-      >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Coluna da Esquerda - Informações da Trilha */}
-          <div className="lg:col-span-2">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
-              <div className="relative h-64">
-                <Image src={trail.image} alt={trail.title} fill className="object-cover" />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center justify-between mb-4">
-                  <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
-                    {trail.title}
-                  </h1>
-                  <span
-                    className={`px-3 py-1 rounded-full text-sm font-medium ${
-                      trail.level === 'Iniciante'
-                        ? 'bg-green-100 text-green-800'
-                        : trail.level === 'Intermediário'
-                        ? 'bg-yellow-100 text-yellow-800'
-                        : 'bg-red-100 text-red-800'
-                    }`}
-                  >
-                    {trail.level}
-                  </span>
-                </div>
-                <p className="text-gray-600 dark:text-gray-300 mb-6">{trail.description}</p>
-                <div className="flex items-center text-gray-600 dark:text-gray-300 mb-6">
-                  <svg
-                    className="w-5 h-5 mr-2"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
-                    />
-                  </svg>
-                  Duração estimada: {trail.duration}
-                </div>
-
-                {/* Barra de Progresso da Trilha */}
-                <div className="mb-6">
-                  <div className="flex justify-between items-center mb-2">
-                    <span className="text-sm text-gray-600 dark:text-gray-300">
-                      Progresso da Trilha
-                    </span>
-                    <span className="text-sm font-medium text-gray-900 dark:text-white">
-                      {Math.round(completionPercentage)}%
-                    </span>
-                  </div>
-                  <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
-                    <div
-                      className="bg-blue-600 h-2.5 rounded-full transition-all duration-500"
-                      style={{ width: `${completionPercentage}%` }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Coluna da Direita - Módulos e Progresso */}
-          <div className="lg:col-span-1">
-            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                Módulos do Curso
-              </h2>
-              <div className="space-y-4">
-                {trail.modules.map((module, index) => {
-                  // Se o módulo for string, usamos ele mesmo; se for objeto, usamos module.title
-                  const moduleText = typeof module === 'string' ? module : module.title;
-                  // Se for string, geramos o slug; se for objeto, usamos a propriedade slug
-                  const moduleSlug = typeof module === 'string'
-                      ? module.toLowerCase().replace(/\s+/g, '-')
-                      : module.slug;
-                  const moduleProgress = trailProgress[moduleSlug];
-
-                  return (
-                    <motion.article
-                      key={index}
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                      className="flex items-center p-4 bg-gray-50 dark:bg-gray-700 rounded-lg"
-                    >
-                      <span className="flex items-center justify-center w-8 h-8 bg-blue-100 dark:bg-blue-900 text-blue-600 dark:text-blue-300 rounded-full mr-4">
-                        {index + 1}
-                      </span>
-                      <div className="flex-1">
-                        <a
-                          href={`/trilhas/${trailIdNum}/${moduleSlug}`}
-                          className="text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-blue-400"
-                        >
-                          {moduleText}
-                        </a>
-                        {moduleProgress && (
-                          <div className="mt-1">
-                            <div className="flex justify-between items-center text-xs text-gray-500 dark:text-gray-400">
-                              <span>Progresso</span>
-                              <span>{moduleProgress.completed ? '100%' : '0%'}</span>
-                            </div>
-                            <div className="w-full bg-gray-200 dark:bg-gray-600 rounded-full h-1">
-                              <div
-                                className="bg-blue-600 h-1 rounded-full transition-all duration-500"
-                                style={{ width: moduleProgress.completed ? '100%' : '0%' }}
-                              />
-                            </div>
-                          </div>
-                        )}
-                      </div>
-                    </motion.article>
-                  );
-                })}
-              </div>
-            </div>
+    <div className="container mx-auto px-4 py-8">
+      <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">{trail.title}</h1>
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div>
+          <img 
+            src={trail.image} 
+            alt={trail.title}
+            className="w-full h-64 object-cover rounded-lg mb-4"
+          />
+          <p className="text-lg text-gray-700 dark:text-gray-300 mb-4">{trail.description}</p>
+          <div className="flex gap-4 mb-6">
+            <span className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-200 px-3 py-1 rounded">
+              {trail.duration}
+            </span>
+            <span className={`px-3 py-1 rounded ${
+              trail.level === 'Iniciante'
+                ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200'
+                : trail.level === 'Intermediário'
+                ? 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200'
+                : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200'
+            }`}>
+              {trail.level}
+            </span>
           </div>
         </div>
-      </motion.main>
+        <div>
+          <h2 className="text-2xl font-semibold text-gray-900 dark:text-white mb-4">Módulos</h2>
+          <div className="space-y-4">
+            {trail.modules.map(module => (
+              <Link 
+                key={module.id}
+                href={`/trilhas/${trailId}/${module.slug}`}
+                className="block border rounded-lg p-4 hover:shadow-md transition-shadow hover:bg-gray-50 dark:hover:bg-gray-800"
+              >
+                <h3 className="text-xl font-medium text-gray-900 dark:text-white mb-2">{module.title}</h3>
+                <p className="text-gray-700 dark:text-gray-300">{module.description}</p>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default TrailPage;
+}

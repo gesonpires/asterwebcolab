@@ -4,16 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
-
-interface Trail {
-  id: number;
-  title: string;
-  description: string;
-  image: string;
-  duration: string;
-  level: string;
-  modules: string[];
-}
+import { Trail } from '@/app/trilhas/data';
 
 interface TrailCardProps {
   trail: Trail;
@@ -51,11 +42,11 @@ export default function TrailCard({ trail }: TrailCardProps) {
         <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
           {trail.title}
         </h3>
-        <p className="text-gray-600 dark:text-gray-300 mb-4">
+        <p className="text-gray-700 dark:text-gray-300 mb-4">
           {trail.description}
         </p>
         <div className="flex items-center justify-between mb-4">
-          <span className="text-sm text-gray-500 dark:text-gray-400">
+          <span className="text-sm text-gray-700 dark:text-gray-400">
             {trail.duration}
           </span>
           <span className={`px-3 py-1 rounded-full text-sm font-medium ${
@@ -72,9 +63,16 @@ export default function TrailCard({ trail }: TrailCardProps) {
           <h4 className="text-sm font-medium text-gray-900 dark:text-white">
             Módulos:
           </h4>
-          <ul className="text-sm text-gray-600 dark:text-gray-300 list-disc list-inside">
-            {trail.modules.map((module, index) => (
-              <li key={index}>{module}</li>
+          <ul className="text-sm text-gray-700 dark:text-gray-300 list-disc list-inside">
+            {trail.modules.map((module) => (
+              <li key={module.id}>
+                <Link 
+                  href={`/trilhas/${trail.id}/${module.slug}`}
+                  className="hover:text-primary hover:underline"
+                >
+                  {module.title}
+                </Link>
+              </li>
             ))}
           </ul>
         </div>

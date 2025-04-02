@@ -4,7 +4,7 @@
 
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import TermCard from '@/components/glossary/TermCard';
+import TermCard from '../../components/glossary/TermCard';
 import { categories } from './categories';
 import { terms, getTermsByCategory, getTermsByDifficulty, searchTerms } from './data';
 

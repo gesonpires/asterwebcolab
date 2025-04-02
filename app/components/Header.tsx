@@ -34,19 +34,19 @@ export default function Header() {
           <nav className="hidden md:flex space-x-6">
             <Link
               href="/trilhas"
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
             >
               Trilhas
             </Link>
             <Link
               href="/cadernos"
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
             >
               Cadernos
             </Link>
             <Link
               href="/glossario"
-              className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
             >
               Glossário
             </Link>

@@ -51,7 +51,7 @@ export default function ProgressDashboard({ userId }: ProgressDashboardProps) {
   if (!progress) {
     return (
       <div className="text-center py-8">
-        <p className="text-gray-600">Nenhum progresso encontrado.</p>
+        <p className="text-gray-700 dark:text-gray-300">Nenhum progresso encontrado.</p>
       </div>
     );
   }
@@ -90,7 +90,7 @@ export default function ProgressDashboard({ userId }: ProgressDashboardProps) {
         <text
           x="18"
           y="20.35"
-          className="text-xs font-medium text-center"
+          className="text-xs font-medium text-gray-900 dark:text-white text-center"
           textAnchor="middle"
         >
           {percentage}%
@@ -108,7 +108,7 @@ export default function ProgressDashboard({ userId }: ProgressDashboardProps) {
           <h4 className="font-medium text-gray-900 dark:text-white">
             {achievement.title}
           </h4>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-gray-700 dark:text-gray-300">
             {achievement.description}
           </p>
         </div>
@@ -121,18 +121,18 @@ export default function ProgressDashboard({ userId }: ProgressDashboardProps) {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="bg-white rounded-lg shadow p-6"
+        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
       >
-        <h2 className="text-2xl font-bold mb-4">Progresso Geral</h2>
+        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Progresso Geral</h2>
         <div className="space-y-4">
           <div>
             <div className="flex justify-between mb-1">
-              <span className="text-gray-600">Conclusão Geral</span>
-              <span className="text-gray-900 font-medium">
+              <span className="text-gray-700 dark:text-gray-300">Conclusão Geral</span>
+              <span className="text-gray-900 dark:text-white font-medium">
                 {progress.overallProgress}%
               </span>
             </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
+            <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2.5">
               <motion.div
                 initial={{ width: 0 }}
                 animate={{ width: `${progress.overallProgress}%` }}
@@ -142,15 +142,15 @@ export default function ProgressDashboard({ userId }: ProgressDashboardProps) {
             </div>
           </div>
           <div className="grid grid-cols-2 gap-4">
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gray-600">Tempo Total</p>
-              <p className="text-xl font-semibold">
+            <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <p className="text-sm text-gray-700 dark:text-gray-300">Tempo Total</p>
+              <p className="text-xl font-semibold text-gray-900 dark:text-white">
                 {formatTime(progress.stats.totalTimeSpent)}
               </p>
             </div>
-            <div className="bg-gray-50 p-4 rounded-lg">
-              <p className="text-sm text-gray-600">Módulos Completados</p>
-              <p className="text-xl font-semibold">
+            <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg">
+              <p className="text-sm text-gray-700 dark:text-gray-300">Módulos Completados</p>
+              <p className="text-xl font-semibold text-gray-900 dark:text-white">
                 {progress.stats.modulesCompleted}
               </p>
             </div>
@@ -162,31 +162,31 @@ export default function ProgressDashboard({ userId }: ProgressDashboardProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="bg-white rounded-lg shadow p-6"
+        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
       >
-        <h2 className="text-2xl font-bold mb-4">Estatísticas</h2>
+        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Estatísticas</h2>
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <div className="bg-gray-50 p-4 rounded-lg text-center">
-            <p className="text-sm text-gray-600">Quizzes</p>
-            <p className="text-xl font-semibold">
+          <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg text-center">
+            <p className="text-sm text-gray-700 dark:text-gray-300">Quizzes</p>
+            <p className="text-xl font-semibold text-gray-900 dark:text-white">
               {progress.stats.quizzesTaken}
             </p>
           </div>
-          <div className="bg-gray-50 p-4 rounded-lg text-center">
-            <p className="text-sm text-gray-600">Exercícios</p>
-            <p className="text-xl font-semibold">
+          <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg text-center">
+            <p className="text-sm text-gray-700 dark:text-gray-300">Exercícios</p>
+            <p className="text-xl font-semibold text-gray-900 dark:text-white">
               {progress.stats.exercisesCompleted}
             </p>
           </div>
-          <div className="bg-gray-50 p-4 rounded-lg text-center">
-            <p className="text-sm text-gray-600">Média</p>
-            <p className="text-xl font-semibold">
+          <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg text-center">
+            <p className="text-sm text-gray-700 dark:text-gray-300">Média</p>
+            <p className="text-xl font-semibold text-gray-900 dark:text-white">
               {progress.stats.averageScore}%
             </p>
           </div>
-          <div className="bg-gray-50 p-4 rounded-lg text-center">
-            <p className="text-sm text-gray-600">Conquistas</p>
-            <p className="text-xl font-semibold">
+          <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg text-center">
+            <p className="text-sm text-gray-700 dark:text-gray-300">Conquistas</p>
+            <p className="text-xl font-semibold text-gray-900 dark:text-white">
               {progress.achievements.length}
             </p>
           </div>
@@ -197,19 +197,21 @@ export default function ProgressDashboard({ userId }: ProgressDashboardProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.2 }}
-        className="bg-white rounded-lg shadow p-6"
+        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
       >
-        <h2 className="text-2xl font-bold mb-4">Conquistas</h2>
+        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Conquistas</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {progress.achievements.map(achievement => (
             <div
               key={achievement.id}
-              className="bg-gray-50 p-4 rounded-lg flex items-center space-x-4"
+              className="bg-gray-50 dark:bg-gray-700 p-4 rounded-lg flex items-center space-x-4"
             >
               <span className="text-2xl">{achievement.icon}</span>
               <div>
-                <h3 className="font-semibold">{achievement.title}</h3>
-                <p className="text-sm text-gray-600">
+                <h3 className="font-semibold text-gray-900 dark:text-white">
+                  {achievement.title}
+                </h3>
+                <p className="text-sm text-gray-700 dark:text-gray-300">
                   {achievement.description}
                 </p>
               </div>
@@ -222,14 +224,14 @@ export default function ProgressDashboard({ userId }: ProgressDashboardProps) {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="bg-white rounded-lg shadow p-6"
+        className="bg-white dark:bg-gray-800 rounded-lg shadow p-6"
       >
-        <h2 className="text-2xl font-bold mb-4">Sugestões</h2>
+        <h2 className="text-2xl font-bold mb-4 text-gray-900 dark:text-white">Sugestões</h2>
         <div className="space-y-2">
           {suggestions?.achievementHints.map((hint: string, index: number) => (
             <div key={index} className="flex items-center space-x-2">
               <span className="text-blue-500">💡</span>
-              <p className="text-gray-700">{hint}</p>
+              <p className="text-gray-700 dark:text-gray-300">{hint}</p>
             </div>
           ))}
         </div>

@@ -63,8 +63,8 @@ export default function UserProfile({
           />
         </div>
         <div>
-          <h2 className="text-2xl font-bold" data-testid="user-name">{user.name}</h2>
-          <p className="text-gray-600 dark:text-gray-400" data-testid="user-email">{user.email}</p>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white" data-testid="user-name">{user.name}</h2>
+          <p className="text-gray-700 dark:text-gray-300" data-testid="user-email">{user.email}</p>
         </div>
       </div>
 
@@ -143,7 +143,7 @@ export default function UserProfile({
             <h3 className="text-lg font-medium text-gray-900 dark:text-white mb-2">
               Sobre
             </h3>
-            <p className="text-gray-600 dark:text-gray-400" data-testid="user-bio">{user.bio}</p>
+            <p className="text-gray-700 dark:text-gray-300" data-testid="user-bio">{user.bio}</p>
           </div>
 
           <div className="mb-6">
@@ -151,13 +151,13 @@ export default function UserProfile({
               Preferências
             </h3>
             <div className="space-y-2">
-              <p className="text-gray-600 dark:text-gray-400" data-testid="user-theme">
+              <p className="text-gray-700 dark:text-gray-300" data-testid="user-theme">
                 Tema: {user.preferences.theme}
               </p>
-              <p className="text-gray-600 dark:text-gray-400" data-testid="user-language">
+              <p className="text-gray-700 dark:text-gray-300" data-testid="user-language">
                 Idioma: {user.preferences.language}
               </p>
-              <p className="text-gray-600 dark:text-gray-400" data-testid="user-notifications">
+              <p className="text-gray-700 dark:text-gray-300" data-testid="user-notifications">
                 Notificações por email:{' '}
                 {user.preferences.emailNotifications
                   ? 'Ativadas'
@@ -177,10 +177,10 @@ export default function UserProfile({
                   className="flex items-center justify-between"
                   data-testid={`interest-${interest.id}`}
                 >
-                  <span className="text-gray-600 dark:text-gray-400">
+                  <span className="text-gray-700 dark:text-gray-300">
                     {interest.name}
                   </span>
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                  <span className="text-sm text-gray-700 dark:text-gray-300">
                     Nível: {interest.level}
                   </span>
                 </div>
@@ -193,16 +193,16 @@ export default function UserProfile({
               Informações da Conta
             </h3>
             <div className="space-y-2">
-              <p className="text-gray-600 dark:text-gray-400" data-testid="user-created-at">
+              <p className="text-gray-700 dark:text-gray-300" data-testid="user-created-at">
                 Membro desde:{' '}
                 {new Date(user.createdAt).toLocaleString('pt-BR', {
                   timeZone: 'UTC',
                   year: 'numeric',
-                  month: '2-digit',
-                  day: '2-digit',
-                }).split(' ')[0]}
+                  month: 'long',
+                  day: 'numeric',
+                })}
               </p>
-              <p className="text-gray-600 dark:text-gray-400" data-testid="user-last-login">
+              <p className="text-gray-700 dark:text-gray-300" data-testid="user-last-login">
                 Último acesso:{' '}
                 {new Date(user.lastLogin).toLocaleString('pt-BR', {
                   timeZone: 'UTC',
@@ -214,13 +214,15 @@ export default function UserProfile({
             </div>
           </div>
 
-          <button
-            onClick={() => setIsEditing(true)}
-            className="w-full px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
-            data-testid="edit-profile-button"
-          >
-            Editar Perfil
-          </button>
+          {onUpdateProfile && (
+            <button
+              onClick={() => setIsEditing(true)}
+              className="px-4 py-2 text-sm font-medium text-white bg-blue-600 border border-transparent rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+              data-testid="edit-button"
+            >
+              Editar Perfil
+            </button>
+          )}
         </>
       )}
     </div>
